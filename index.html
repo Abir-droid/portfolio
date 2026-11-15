@@ -2,7 +2,13 @@
 <html lang="en" class="dark scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/terminal-icon.svg" />
+    <base href="/me/" />
+    <script>
+      if (window.location.pathname === '/me') {
+        window.location.replace('/me/' + window.location.search + window.location.hash);
+      }
+    </script>
+    <link rel="icon" type="image/svg+xml" href="terminal-icon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Md. Abirul Karim Sarkar — Software Engineering Student & Full-Stack Developer</title>
     <meta name="description" content="Portfolio of Md. Abirul Karim Sarkar (Abir-droid) — Software Engineering Student at Daffodil International University. Passionate about Full-Stack Web Development, Django, Python, Linux, and Self-Hosting." />

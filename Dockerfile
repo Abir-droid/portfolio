@@ -6,9 +6,9 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-# Stage 2: Serve
+# Stage 2: Serve on port 3000 (avoids conflict with Traefik on 80)
 FROM nginx:alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 80
+EXPOSE 3000
 CMD ["nginx", "-g", "daemon off;"]

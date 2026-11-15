@@ -16,7 +16,7 @@ const accentColors = [
 
 export const BeyondCode: React.FC = () => {
   return (
-    <section id="beyond" className="py-24 lg:py-32 relative">
+    <section id="beyond" className="py-20 lg:py-28 relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/8 to-transparent" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -41,7 +41,7 @@ export const BeyondCode: React.FC = () => {
             return (
               <div
                 key={item.id}
-                className="group grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 py-12 border-t border-white/8 items-center"
+                className="group grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 py-10 border-t border-white/8 items-start"
               >
                 {/* Number — large editorial */}
                 <div className={`lg:col-span-1 ${isEven ? '' : 'lg:order-last'}`}>
@@ -58,7 +58,7 @@ export const BeyondCode: React.FC = () => {
                 </div>
 
                 {/* Content */}
-                <div className="lg:col-span-6">
+                <div className="lg:col-span-7 min-w-0">
                   <h3 className={`text-2xl sm:text-3xl font-bold text-white tracking-tight mb-2 group-hover:${color.text} transition-colors`}>
                     {item.title}
                   </h3>
@@ -69,7 +69,7 @@ export const BeyondCode: React.FC = () => {
                 </div>
 
                 {/* Tags — right side */}
-                <div className="lg:col-span-4 flex flex-wrap gap-2">
+                <div className="lg:col-span-3 flex flex-wrap gap-2">
                   {item.tags.map((tag) => (
                     <span
                       key={tag}

@@ -20,7 +20,7 @@ export const About: React.FC = () => {
         </div>
 
         {/* Two-column split */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
 
           {/* LEFT: Portrait */}
           <div className="relative flex flex-col items-start">
@@ -32,7 +32,7 @@ export const About: React.FC = () => {
               {/* Image container */}
               <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/60 aspect-[4/5]">
                 <img
-                  src="/profile.png"
+                  src="./profile.png"
                   alt="Md. Abirul Karim Sarkar"
                   className="w-full h-full object-cover object-top"
                   style={{ filter: 'brightness(0.95) contrast(1.05)' }}

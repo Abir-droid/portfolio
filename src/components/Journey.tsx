@@ -18,7 +18,7 @@ const milestoneColors = {
 
 export const Journey: React.FC = () => {
   return (
-    <section id="journey" className="py-24 lg:py-32 relative">
+    <section id="journey" className="py-20 lg:py-28 relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/8 to-transparent" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6">

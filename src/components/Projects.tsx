@@ -81,7 +81,7 @@ export const Projects: React.FC = () => {
                   )}
                 </div>
 
-                <h3 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight mb-3">
+                <h3 className="text-2xl sm:text-3xl lg:text-3xl font-extrabold text-white tracking-tight leading-tight mb-3">
                   {flagship.name}
                 </h3>
                 <p className="text-sky-300 font-mono text-sm mb-4">{flagship.tagline}</p>
@@ -109,7 +109,7 @@ export const Projects: React.FC = () => {
             </div>
 
             {/* Right: Terminal preview panel */}
-            <div className="relative bg-surface-400/80 border-l border-white/8 p-6 sm:p-8 font-mono text-xs flex flex-col justify-center min-h-[280px]">
+            <div className="relative bg-surface-400/80 border-l border-white/8 p-5 sm:p-7 font-mono text-xs flex flex-col justify-center min-h-[240px] overflow-hidden">
               <div className="flex items-center gap-1.5 mb-5">
                 <span className="w-2.5 h-2.5 rounded-full bg-rose-500/70" />
                 <span className="w-2.5 h-2.5 rounded-full bg-amber-500/70" />

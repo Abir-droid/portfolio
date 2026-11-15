@@ -12,6 +12,8 @@ export interface Project {
   liveUrl?: string;
   featured: boolean;
   highlights: string[];
+  architecture?: string;
+  learnings?: string;
   badge?: string;
   stats?: {
     stars?: number;

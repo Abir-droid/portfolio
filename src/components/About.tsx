@@ -1,31 +1,31 @@
 import React from 'react';
-import { Terminal, Server, Code, MapPin, GraduationCap, Cpu } from 'lucide-react';
+import { Terminal, Server, Code, MapPin, GraduationCap, Smartphone, Disc, Database } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
 export const About: React.FC = () => {
   return (
-    <section id="about" className="py-24 lg:py-32 relative">
+    <section id="about" className="py-20 lg:py-28 relative">
       {/* Top separator */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/8 to-transparent" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
         {/* Section label */}
-        <div className="mb-16">
-          <span className="text-xs font-mono tracking-widest text-accent-cyan uppercase">01 · Profile & Background</span>
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mt-3 max-w-2xl leading-tight">
-            Engineering solutions<br />
-            <span className="text-slate-400 font-light">from the ground up.</span>
+        <div className="mb-14">
+          <span className="text-xs font-mono tracking-widest text-accent-cyan uppercase">01 · Profile &amp; Background</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mt-3 max-w-2xl leading-tight">
+            Learning without boundaries,<br />
+            <span className="text-slate-400 font-light">building across the stack.</span>
           </h2>
         </div>
 
         {/* Two-column split */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
 
-          {/* LEFT: Portrait */}
-          <div className="relative flex flex-col items-start">
+          {/* LEFT: Portrait & Fast Highlights */}
+          <div className="relative flex flex-col items-start w-full">
             {/* Portrait frame */}
-            <div className="relative w-full max-w-sm">
+            <div className="relative w-full max-w-sm mx-auto lg:mx-0">
               {/* Accent glow behind image */}
               <div className="absolute -inset-2 bg-gradient-to-br from-sky-500/20 via-indigo-500/10 to-transparent rounded-3xl blur-2xl" />
 
@@ -54,21 +54,31 @@ export const About: React.FC = () => {
                   <div className="text-white font-bold text-lg tracking-tight">{personalInfo.name}</div>
                   <div className="text-accent-cyan font-mono text-xs mt-0.5 flex items-center gap-1.5">
                     <MapPin className="w-3 h-3 text-rose-400" />
-                    Dhaka, Bangladesh
+                    Dhaka, Bangladesh · DIU
                   </div>
                 </div>
               </div>
 
               {/* Floating info cards alongside portrait */}
-              <div className="mt-5 grid grid-cols-2 gap-3">
+              <div className="mt-4 grid grid-cols-2 gap-2.5">
                 <div className="p-3 rounded-xl bg-surface-200/80 border border-white/8 backdrop-blur-sm">
-                  <GraduationCap className="w-4 h-4 text-sky-400 mb-1.5" />
-                  <div className="text-white text-xs font-semibold leading-tight">BSc Software Engineering</div>
-                  <div className="text-slate-400 text-[11px] mt-0.5">Daffodil Int. University</div>
+                  <Smartphone className="w-4 h-4 text-emerald-400 mb-1" />
+                  <div className="text-white text-xs font-semibold leading-tight">Android Developer</div>
+                  <div className="text-slate-400 text-[11px] mt-0.5 font-mono">@Abir-droid Origin</div>
                 </div>
                 <div className="p-3 rounded-xl bg-surface-200/80 border border-white/8 backdrop-blur-sm">
-                  <Server className="w-4 h-4 text-emerald-400 mb-1.5" />
-                  <div className="text-white text-xs font-semibold leading-tight">Homelab Online</div>
+                  <Disc className="w-4 h-4 text-cyan-400 mb-1" />
+                  <div className="text-white text-xs font-semibold leading-tight">15+ Linux Distros</div>
+                  <div className="text-slate-400 text-[11px] mt-0.5">Tested &amp; Configured</div>
+                </div>
+                <div className="p-3 rounded-xl bg-surface-200/80 border border-white/8 backdrop-blur-sm">
+                  <Database className="w-4 h-4 text-sky-400 mb-1" />
+                  <div className="text-white text-xs font-semibold leading-tight">PostgreSQL &amp; Django</div>
+                  <div className="text-slate-400 text-[11px] mt-0.5">Relational Backends</div>
+                </div>
+                <div className="p-3 rounded-xl bg-surface-200/80 border border-white/8 backdrop-blur-sm">
+                  <Server className="w-4 h-4 text-indigo-400 mb-1" />
+                  <div className="text-white text-xs font-semibold leading-tight">Home Server Online</div>
                   <div className="text-emerald-400 text-[11px] mt-0.5 font-mono">abirdroid.ddns.net</div>
                 </div>
               </div>
@@ -76,39 +86,55 @@ export const About: React.FC = () => {
           </div>
 
           {/* RIGHT: Narrative */}
-          <div className="space-y-8 pt-2">
-            <div className="space-y-5 text-base sm:text-lg text-slate-300 leading-relaxed">
+          <div className="space-y-7 pt-2">
+            <div className="space-y-4 text-sm sm:text-base text-slate-300 leading-relaxed font-light">
               <p>
-                I'm a software engineering student at <strong className="text-white">Daffodil International University (DIU)</strong> in Dhaka, Bangladesh. I believe the best way to master computing is through building real things — not just tutorials.
+                I am a software engineering undergraduate at <strong className="text-white font-medium">Daffodil International University (DIU)</strong> in Dhaka, Bangladesh. Rather than locking myself into one narrow specialty early on, I am driven by the thrill of discovering how technology works across its many dimensions.
               </p>
               <p>
-                My work spans <strong className="text-sky-300">full-stack web development</strong> with Python and Django backends, JavaScript frontends, and relational databases. Beyond the web layer, I'm equally fascinated by systems: running <strong className="text-cyan-300">Arch Linux and Debian</strong> as my daily drivers, writing Bash automation, and understanding how software meets hardware.
+                My work spans <strong className="text-emerald-300 font-medium">Android app development</strong> — which inspired my developer identity as <span className="font-mono text-accent-cyan bg-white/5 px-1.5 py-0.5 rounded">@Abir-droid</span> — alongside full-stack engineering with <strong className="text-sky-300 font-medium">Python, Django, and PostgreSQL</strong>.
               </p>
               <p>
-                I operate a personal <strong className="text-emerald-400">home server</strong> at <span className="font-mono text-xs text-slate-200 bg-white/5 px-2 py-0.5 rounded">abirdroid.ddns.net</span>, deploying real applications with Docker and Coolify — giving me hands-on DevOps experience that classroom lectures rarely provide.
+                I am equally passionate about systems: I have hopped through and tested <strong className="text-cyan-300 font-medium">15 to 20 different Linux distributions</strong>, customizing Arch Linux and Debian as daily drivers, writing shell scripts, and exploring kernel parameters and systemd services.
+              </p>
+              <p>
+                To put theory into practice, I operate a dedicated <strong className="text-white font-medium">home server</strong> at <span className="font-mono text-xs text-slate-200 bg-white/5 px-2 py-0.5 rounded">abirdroid.ddns.net</span> running containerized applications via Docker and Coolify.
               </p>
             </div>
 
-            {/* Principles — editorial list, no cards */}
-            <div className="pt-4 border-t border-white/8 space-y-5">
+            {/* Principles — editorial list */}
+            <div className="pt-4 border-t border-white/8 space-y-4">
               <span className="text-xs font-mono text-slate-500 uppercase tracking-widest">How I approach engineering</span>
-              <div className="space-y-4">
+              <div className="space-y-3.5">
                 {[
-                  { icon: <Code className="w-4 h-4 text-sky-400" />, title: 'Practical First', desc: 'Real projects expose edge cases that no tutorial ever mentions.' },
-                  { icon: <Terminal className="w-4 h-4 text-cyan-400" />, title: 'Understand the System', desc: 'From kernel to web request — knowing the layers makes me a better developer.' },
-                  { icon: <Cpu className="w-4 h-4 text-indigo-400" />, title: 'Stay Curious', desc: 'Go concurrency, local LLMs, Arch configs — curiosity is the engine.' },
+                  {
+                    icon: <Smartphone className="w-4 h-4 text-emerald-400" />,
+                    title: 'Multi-Disciplinary Exploration',
+                    desc: 'Android apps, backend architectures, databases, and systems — learning broadly builds stronger architectural intuition.'
+                  },
+                  {
+                    icon: <Terminal className="w-4 h-4 text-cyan-400" />,
+                    title: 'System-Level Curiosity',
+                    desc: 'Hopping 15+ distros and mastering the CLI taught me how software, kernels, and memory actually cooperate.'
+                  },
+                  {
+                    icon: <Server className="w-4 h-4 text-indigo-400" />,
+                    title: 'Hands-on Deployment',
+                    desc: 'Hosting applications on bare metal with Docker and PostgreSQL turns academic concepts into production-grade experience.'
+                  },
                 ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-4">
+                  <div key={i} className="flex items-start gap-3.5">
                     <div className="mt-0.5 p-2 rounded-lg bg-surface-200/60 border border-white/8 shrink-0">{item.icon}</div>
                     <div>
                       <div className="text-white font-semibold text-sm">{item.title}</div>
-                      <div className="text-slate-400 text-sm mt-0.5 leading-relaxed">{item.desc}</div>
+                      <div className="text-slate-400 text-xs sm:text-sm mt-0.5 leading-relaxed">{item.desc}</div>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>

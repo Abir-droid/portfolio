@@ -4,21 +4,21 @@ export const personalInfo = {
   name: 'Md. Abirul Karim Sarkar',
   shortName: 'Abir',
   handle: 'Abir-droid',
-  role: 'Software Engineering Student · Developer',
+  role: 'Software Engineering Student · Multi-Disciplinary Developer',
   university: 'Daffodil International University (DIU)',
   degree: 'BSc in Software Engineering',
   location: 'Dhaka, Bangladesh',
-  bioHeadline: 'Building ideas into digital experiences.',
-  bioIntro: "I'm Abir, a software engineering student passionate about building web applications, exploring systems, and turning ideas into working software.",
+  bioHeadline: 'Curious developer, Android explorer & systems tinkerer.',
+  bioIntro: "I'm Abir, a software engineering student at DIU. Rather than boxing myself into one specialty, I'm an active learner working across platforms — developing Android apps, exploring 15+ Linux distributions, crafting Django & PostgreSQL backends, and self-hosting services on bare metal.",
   aboutParagraphs: [
-    "I am an aspiring full-stack developer and software engineering student at Daffodil International University in Dhaka, Bangladesh. Rather than simply learning theoretical concepts, I thrive on building actual projects, configuring systems from scratch, and understanding how data flows across the entire stack.",
-    "My technical journey bridges the gap between web application development and systems infrastructure. From architecting Python/Django backends and crafting responsive client interfaces to deploying containerized applications with Docker and Coolify on my personal home server, I love the craftsmanship of end-to-end engineering.",
-    "When I'm not writing code, you'll find me tweaking my Arch Linux setup, experimenting with self-hosted services, exploring local LLMs, and diving into computer science fundamentals. I believe continuous curiosity and deliberate practice are the cornerstones of becoming a great engineer."
+    "I am an aspiring software engineer and student at Daffodil International University in Dhaka, Bangladesh. Rather than restricting myself to a single narrow stack, I approach computing with wide curiosity — actively exploring mobile app development, backend architectures, relational databases, and operating system mechanics.",
+    "My exploration spans diverse domains: I have built native Android applications (the true inspiration behind my handle, @Abir-droid), developed full-stack web applications with Python, Django, and PostgreSQL/MySQL, and hopped through 15–20 Linux distributions — configuring custom Arch Linux environments, Debian workstations, and containerized servers.",
+    "On my personal home server at abirdroid.ddns.net, I self-host Docker containers with Coolify, manage PostgreSQL databases, configure dynamic DNS, and experiment with bare-metal networking. As an eager learner, I thrive on understanding how every layer of software works from client interfaces down to the operating system."
   ],
-  status: 'SOFTWARE ENGINEERING STUDENT · BANGLADESH',
+  status: 'SOFTWARE ENGINEERING STUDENT · DIU, BANGLADESH',
   homelabStatus: 'ONLINE · abirdroid.ddns.net',
-  email: 'abirul.karim.dev@gmail.com', // configurable
-  fallbackEmail: 'sarkar.abirul@gmail.com',
+  email: 'aksarker2019@gmail.com',
+  fallbackEmail: 'aksarker2019@gmail.com',
 };
 
 export const socialLinks: SocialLink[] = [
@@ -63,10 +63,11 @@ export const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    title: 'Frameworks & Web Dev',
-    subtitle: 'Full-stack application architecture',
+    title: 'Mobile & Web Development',
+    subtitle: 'Multi-platform application architecture',
     iconName: 'Layers',
     skills: [
+      { name: 'Android Development', level: 'proficient', details: 'Native Android app design, lifecycle, UI architecture, mobile UX' },
       { name: 'Django', level: 'proficient', details: 'MTV architecture, ORM, authentication, routing' },
       { name: 'Frontend Engineering', level: 'proficient', details: 'Component architecture, responsive UI, state flow' },
       { name: 'REST APIs', level: 'proficient', details: 'API design, JSON serialization, client consumption' },
@@ -78,6 +79,7 @@ export const skillCategories: SkillCategory[] = [
     subtitle: 'Data persistence and query management',
     iconName: 'Database',
     skills: [
+      { name: 'PostgreSQL', level: 'proficient', details: 'Relational data modeling, complex queries, transactions, ORM integration' },
       { name: 'MySQL', level: 'proficient', details: 'Relational schema design, indexing, SQL queries' },
       { name: 'SQLite', level: 'proficient', details: 'Lightweight local storage, prototyping, lab databases' },
     ],
@@ -87,22 +89,12 @@ export const skillCategories: SkillCategory[] = [
     subtitle: 'Operating environments and deployment',
     iconName: 'Server',
     skills: [
-      { name: 'Linux (Arch & Debian)', level: 'proficient', details: 'Daily driver OS, systemctl, package management, CLI' },
+      { name: 'Linux (15+ Distros Explored)', level: 'proficient', details: 'Arch, Debian, Fedora, Ubuntu & more — package managers, systemd, kernel configs' },
       { name: 'Docker', level: 'proficient', details: 'Containerization, Dockerfile recipes, compose files' },
       { name: 'Coolify', level: 'proficient', details: 'Self-hosted PaaS management for web applications' },
-      { name: 'Home Server & Networking', level: 'proficient', details: 'Port forwarding, Dynamic DNS (DDNS), reverse proxy' },
-      { name: 'Git & GitHub', level: 'proficient', details: 'Version control, branch management, collaborative workflows' },
-      { name: 'Bash Scripting', level: 'proficient', details: 'Automation, system maintenance, setup scripts' },
-    ],
-  },
-  {
-    title: 'Exploration & Tools',
-    subtitle: 'AI, tooling, and developer workflows',
-    iconName: 'Terminal',
-    skills: [
-      { name: 'Local LLMs (Ollama)', level: 'exploring', details: 'Running open weights locally, AI assisted development' },
-      { name: 'System Troubleshooting', level: 'proficient', details: 'Diagnostic logs, hardware checks, network debugging' },
-      { name: 'VS Code & CLI Tools', level: 'proficient', details: 'Productive developer environment and terminal workflows' },
+      { name: 'Home Server & Networking', level: 'proficient', details: 'Dynamic DNS, reverse proxies, port routing, bare metal' },
+      { name: 'Git & Version Control', level: 'proficient', details: 'Branching, remotes, CI/CD, collaborative workflows' },
+      { name: 'Bash', level: 'proficient', details: 'Shell automation, custom dotfiles, system maintenance scripts' },
     ],
   },
 ];
@@ -110,213 +102,130 @@ export const skillCategories: SkillCategory[] = [
 export const projects: Project[] = [
   {
     id: 'chatbox',
-    name: 'ChatBox — Self-Hosted Chat & Calling App',
-    tagline: 'Real-time communication suite with voice/video call capability',
-    description: 'A self-hosted real-time messaging web application featuring channel-based chat and peer-to-peer audio and video calling functionality. Deployed and served live on my personal home server infrastructure.',
+    name: 'ChatBox',
+    tagline: 'Real-time WebRTC audio/video and WebSocket chat',
+    description: 'A self-hosted, full-featured web communication platform supporting real-time text messaging, peer-to-peer audio calls, and video streaming using modern WebRTC standards. Built without heavy third-party SaaS dependencies and actively deployed on my personal home server.',
     category: 'fullstack',
-    categoryLabel: 'Full-Stack / Real-Time',
-    techStack: ['JavaScript', 'WebRTC', 'WebSockets', 'HTML5/CSS3', 'Docker', 'Coolify'],
+    categoryLabel: 'Real-Time Communications',
+    techStack: ['JavaScript', 'WebRTC', 'WebSockets', 'HTML5', 'CSS3', 'Docker'],
     githubUrl: 'https://github.com/Abir-droid/chatbox',
     liveUrl: 'https://abirdroid.ddns.net/chatbox',
     featured: true,
-    badge: 'Live on Homelab',
     highlights: [
-      'Peer-to-peer audio and video calling built directly in the browser',
-      'Instant real-time bidirectional message delivery',
-      'Containerized with Docker and served via Coolify PaaS on personal server',
-      'Responsive design engineered for mobile and desktop screens'
+      'Peer-to-peer audio and video calling powered by WebRTC RTCPeerConnection',
+      'Low-latency full-duplex text communication via WebSocket channels',
+      'Self-contained architecture with zero external paid third-party dependencies',
+      'Production deployment on home server with Coolify container orchestration'
     ],
-    stats: {
-      language: 'JavaScript',
-      status: 'Active / Deployed'
-    }
+    architecture: 'Browser client initiates WebSocket handshake for signaling, establishes WebRTC mesh for direct P2P media streams, falling back to STUN for NAT traversal.',
+    learnings: 'Deepened my understanding of ICE candidates, NAT traversal, audio/video stream codecs, and real-time event loops in modern browsers.',
   },
   {
     id: 'qr-attendance',
     name: 'QR Attendance System',
-    tagline: 'Automated campus attendance tracking using dynamic QR tokens',
-    description: 'A practical university attendance solution using Python and Django. Generates time-sensitive dynamic QR codes for instructors to present during lectures, allowing students to authenticate and record verified attendance seamlessly.',
-    category: 'python',
-    categoryLabel: 'Python / Full-Stack',
-    techStack: ['Python', 'Django', 'SQLite/MySQL', 'QR Code Engine', 'HTML5/CSS3'],
+    tagline: 'Automated student presence tracking with dynamic QR validation',
+    description: 'A web-based attendance automation system engineered with Django. Eliminates manual roll calls by generating time-sensitive dynamic QR codes that students scan to log attendance instantly, complete with a teacher management dashboard and reporting.',
+    category: 'fullstack',
+    categoryLabel: 'Academic Automation',
+    techStack: ['Python', 'Django', 'PostgreSQL', 'SQLite', 'JavaScript', 'HTML5', 'CSS3'],
     githubUrl: 'https://github.com/Abir-droid/qr-attendance',
     liveUrl: 'https://abirdroid.ddns.net/qrattendance/',
     featured: true,
-    badge: 'University Utility',
     highlights: [
-      'Dynamic QR generation preventing proxy attendance and link sharing',
-      'Role-based dashboards for course instructors and students',
-      'Database tracking for attendance history, session logs, and class records',
-      'Deployed on homelab infrastructure with secure authentication flows'
+      'Time-based rolling QR code token generation to prevent fraudulent scans',
+      'Role-based access control separating teacher portals from student interfaces',
+      'Real-time attendance computation and automated summary statistics',
+      'Live deployment on personal server infrastructure'
     ],
-    stats: {
-      language: 'Python',
-      status: 'Deployed'
-    }
+    architecture: 'Django MTV pattern backed by relational database; dynamic QR tokens generated per session with cryptographic expiration timestamps.',
+    learnings: 'Mastered Django ORM relationship modeling, authentication middleware, and securing time-sensitive verification tokens.',
   },
   {
     id: 'mystudy-planner',
-    name: 'MyStudy Planner & Workspace',
-    tagline: 'Focused academic productivity dashboard for university students',
-    description: 'A personal study workspace and planner designed to manage coursework, organize semester subject targets, track study sessions, and monitor academic progress with an intuitive, distraction-free interface.',
+    name: 'MyStudy-Planner',
+    tagline: 'Interactive academic scheduling and task management dashboard',
+    description: 'A focused, responsive web application designed to help university students organize class timetables, track assignment deadlines, and manage daily study priorities with persistent state and an intuitive visual workflow.',
     category: 'frontend',
-    categoryLabel: 'Frontend / Productivity',
-    techStack: ['JavaScript', 'HTML5', 'Modern CSS', 'LocalStorage', 'Responsive UI'],
+    categoryLabel: 'Productivity Tool',
+    techStack: ['JavaScript', 'HTML5', 'CSS3', 'Local Storage', 'Responsive Design'],
     githubUrl: 'https://github.com/Abir-droid/MyStudy-Planner',
     liveUrl: 'https://abirdroid.ddns.net/mystudy-planner',
     featured: true,
-    badge: 'Academic Tool',
     highlights: [
-      'Task prioritization, deadline alerts, and study schedule organizer',
-      'Modular dashboard design prioritizing keyboard navigation and ease of use',
-      'Persistent local data synchronization with zero external overhead',
-      'Deployed on personal server with accessible cross-device sync'
+      'Weekly timetable visualization with dynamic subject block placement',
+      'Task deadline tracker with urgency color-coding and completion filters',
+      'Fully responsive layout optimized for mobile study sessions and desktop desks',
+      'Self-hosted deployment on personal homelab server'
     ],
-    stats: {
-      language: 'JavaScript',
-      status: 'Active'
-    }
+    architecture: 'Vanilla JavaScript client architecture with clean modular separation for state management, DOM rendering, and local persistence.',
+    learnings: 'Reinforced DOM lifecycle optimization, responsive CSS grid/flexbox techniques, and accessible keyboard navigation patterns.',
   },
   {
     id: 'complaint-management-system',
     name: 'Complaint Management System',
     tagline: 'Structured issue reporting and resolution workflow portal',
-    description: 'A web-based complaint management application created to formalize grievance submission, ticket dispatching, categorized tracking, and resolution statuses for institutional departments.',
+    description: 'A comprehensive campus complaint management portal designed to streamline grievance submission, status tracking, and administrative resolution. Built to demonstrate structured database-driven workflow management.',
     category: 'fullstack',
-    categoryLabel: 'Web Systems',
-    techStack: ['HTML5', 'CSS3', 'JavaScript', 'Backend Service', 'Relational DB'],
+    categoryLabel: 'Workflow Systems',
+    techStack: ['HTML5', 'CSS3', 'JavaScript', 'PHP / MySQL'],
     githubUrl: 'https://github.com/Abir-droid/complaint-management-system',
-    liveUrl: 'https://abirdroid.ddns.net/complaints',
+    liveUrl: 'https://abirdroid.ddns.net/complaint-management-system',
     featured: true,
-    badge: 'Workflow System',
     highlights: [
-      'Structured lifecycle workflow: Pending, Under Review, and Resolved',
-      'Category-based issue assignment and priority categorization',
-      'Clean interface prioritizing clarity for both end-users and administrators'
+      'End-to-end ticket lifecycle: Open, Under Review, Escalated, Resolved',
+      'Category-based complaint routing to appropriate university departments',
+      'Student tracking portal with real-time status updates and resolution logs'
     ],
-    stats: {
-      language: 'Web Stack',
-      status: 'Live Demo'
-    }
+    architecture: 'Multi-role web portal with authentication gating, relational schema for audit logs, and status transition validation.',
+    learnings: 'Gained practical experience in administrative role separation, relational data modeling, and workflow state machines.',
   },
   {
     id: 'tictactoe-go',
-    name: 'Online Tic-Tac-Toe in Go',
-    tagline: 'Concurrent online multiplayer game leveraging Golang backend',
-    description: 'An exploration into Go backend development and concurrency. Implements an online multiplayer Tic-Tac-Toe game where players can join matches and play against each other with synchronized game states.',
+    name: 'Tic-Tac-Toe in Go',
+    tagline: 'Concurrent CLI game engine built with Golang',
+    description: 'An interactive command-line board game built in Go to explore the language\'s syntax, strong static typing, pointer semantics, clean package modularity, and memory management mechanics.',
     category: 'systems',
-    categoryLabel: 'Go / Concurrency',
-    techStack: ['Go (Golang)', 'Goroutines', 'WebSockets / HTTP', 'HTML5 Canvas/CSS'],
+    categoryLabel: 'Systems & Algorithms',
+    techStack: ['Go (Golang)', 'CLI', 'Game Logic', 'Unit Testing'],
     githubUrl: 'https://github.com/Abir-droid/tictactoe',
-    liveUrl: 'https://abirdroid.ddns.net/tictactoe/',
     featured: false,
-    badge: 'Go Concurrency',
     highlights: [
-      'Lightweight game state engine powered by Go concurrency primitives',
-      'Zero-dependency fast binary execution on the server',
-      'Instant room-based matchmaking and real-time board updates'
+      'Clean idiomatic Go codebase organized with packages and strict type definitions',
+      'Board validation algorithms detecting win/draw conditions in minimal steps',
+      'Interactive terminal input handling with validation and game replay loops'
     ],
-    stats: {
-      language: 'Go',
-      status: 'Deployed'
-    }
+    architecture: 'Modular Go package architecture with decoupled board state engine, input reader, and terminal renderer.',
+    learnings: 'Firsthand appreciation for Go\'s clean error handling philosophy, fast compiler toolchain, and type-safe memory safety.',
   },
   {
     id: 'custom-omarchy',
-    name: 'Custom Omarchy — Linux Setup & Dotfiles',
-    tagline: 'Pre-customized Arch Linux environment and automated restore scripts',
-    description: 'A personal collection of Arch Linux configuration files, package manifests, and automated shell scripts to rapidly recreate a customized developer desktop environment.',
+    name: 'Custom Omarchy Linux Dotfiles',
+    tagline: 'Minimalist Arch Linux configuration and workflow automation',
+    description: 'A curated personal configuration repository for Arch Linux, encapsulating shell customizations, lightweight window manager setups, keybindings, and automation scripts tailored for focused developer productivity.',
     category: 'systems',
-    categoryLabel: 'Linux / DevOps',
-    techStack: ['Linux', 'Arch Linux', 'Bash', 'Systemd', 'Dotfiles'],
+    categoryLabel: 'Linux Customization',
+    techStack: ['Arch Linux', 'Bash', 'Zsh / Fish', 'Linux Dotfiles', 'Systemd'],
     githubUrl: 'https://github.com/Abir-droid/custom-omarchy',
     featured: false,
-    badge: 'Arch Linux',
     highlights: [
-      'Automated provisioning of developer dependencies and system configs',
-      'Curated terminal setup with customized shells and fast shortcuts',
-      'Reproducible system state for Arch-based workstations'
+      'Reproducible system setup scripts for fast installation on fresh Arch installs',
+      'Customized shell environments with productivity aliases and git integrations',
+      'Lightweight status bar configurations and dynamic workspace management'
     ],
-    stats: {
-      language: 'Shell / Bash',
-      status: 'Maintained'
-    }
+    architecture: 'Symlink-based dotfile management with modular install scripts and environment-specific overrides.',
+    learnings: 'In-depth mastery of the Linux CLI, package manager hooks, POSIX shell scripting, and tailoring developer environments for speed.',
   },
-  {
-    id: 'algorithm-lab',
-    name: 'Algorithm Lab Implementations',
-    tagline: 'Core computer science algorithms and data structures in C',
-    description: 'Academic laboratory repository containing implementations of classic algorithms: sorting (QuickSort, MergeSort), graph traversal (BFS, DFS), shortest path, dynamic programming, and data structures in pure C.',
-    category: 'systems',
-    categoryLabel: 'C / Algorithms',
-    techStack: ['C', 'Data Structures', 'Algorithm Analysis', 'Memory Management'],
-    githubUrl: 'https://github.com/Abir-droid/Algorithm-Lab',
-    featured: false,
-    badge: 'CS Fundamentals',
-    highlights: [
-      'Pointer-based graph and tree representations',
-      'Empirical time complexity benchmarks and step traces',
-      'Direct memory allocation with valgrind clean routines'
-    ],
-    stats: {
-      language: 'C',
-      status: 'Academic'
-    }
-  },
-  {
-    id: 'voice-assistant',
-    name: 'Python Voice Assistant',
-    tagline: 'Hands-free desktop assistant for Windows with voice recognition',
-    description: 'A Python-based desktop voice assistant capable of processing speech commands to automate routine computer tasks: launching software, opening web searches, playing media, and reading system status.',
-    category: 'python',
-    categoryLabel: 'Python Automation',
-    techStack: ['Python', 'SpeechRecognition', 'Pyttsx3', 'OS Automation'],
-    githubUrl: 'https://github.com/Abir-droid/voice-assistant',
-    featured: false,
-    badge: 'Python Scripting',
-    highlights: [
-      'Voice command parser with natural fallback responses',
-      'Automates desktop operations and browser interactions',
-      'Offline-capable text-to-speech synthesis pipeline'
-    ],
-    stats: {
-      language: 'Python',
-      status: 'Open Source'
-    }
-  },
-  {
-    id: 'test-blogging',
-    name: 'Test-Blogging Static Platform',
-    tagline: 'Semantic web design study and responsive blog layout',
-    description: 'An early frontend design project exploring clean typography, responsive layout techniques, and semantic web structure without heavy framework dependencies.',
-    category: 'frontend',
-    categoryLabel: 'Frontend Exploration',
-    techStack: ['HTML5', 'CSS3', 'Responsive Design', 'Typography'],
-    githubUrl: 'https://github.com/Abir-droid/Test-blogging',
-    liveUrl: 'https://abirdroid.ddns.net/Blog',
-    featured: false,
-    badge: 'Frontend Study',
-    highlights: [
-      'Lightweight semantic HTML layout crafted for readability',
-      'Zero external CSS library dependencies',
-      'Hosted live on self-hosted domain'
-    ],
-    stats: {
-      language: 'HTML / CSS',
-      status: 'Live Demo'
-    }
-  }
 ];
 
 export const beyondTheCode = [
   {
     id: '01',
     number: '01',
-    title: 'Linux & Open Source',
-    tagline: 'System-level depth, customization & command-line mastery',
-    description: 'Arch Linux and Debian are not just operating systems to me—they are my primary daily development drivers. I immerse myself in understanding Unix philosophy, configuring window managers, crafting Bash automation scripts, and tweaking dotfiles. Exploring systemctl, kernel packages, and memory management gives me an appreciation for the software beneath modern frameworks.',
-    tags: ['Arch Linux', 'Debian', 'Bash Scripting', 'Dotfiles', 'Systemd', 'CLI Workflows'],
-    stat: 'Arch & Debian Daily Driver',
+    title: '15+ Linux Distros & System Internals',
+    tagline: 'Deep dive into 15–20 distributions, kernels & Unix philosophy',
+    description: 'My enthusiasm for Linux goes far beyond simple desktop use. I have tested and hopped across 15 to 20 Linux distributions — analyzing package managers (pacman, apt, dnf), testing desktop environments and window managers, writing Bash automation, and fine-tuning systemd services and kernel parameters. This hands-on exploration gives me an intuitive grasp of operating systems that modern high-level abstractions often obscure.',
+    tags: ['15+ Distros Hopped', 'Arch Linux', 'Debian', 'Bash Automation', 'Dotfiles', 'Systemd'],
+    stat: '15–20 Distros Explored',
     color: 'from-cyan-500/20 via-blue-500/10 to-transparent',
     accentBorder: 'group-hover:border-accent-cyan/50',
     iconName: 'Terminal',
@@ -324,26 +233,26 @@ export const beyondTheCode = [
   {
     id: '02',
     number: '02',
-    title: 'Self-Hosting & Infrastructure',
-    tagline: 'Personal home server, containerized apps & networking',
-    description: 'I maintain a dedicated home server hosting real-world web applications at abirdroid.ddns.net. Working with Docker, Docker Compose, and Coolify has taught me practical DevOps: reverse proxy routing, SSL certificate management, DNS records, dynamic IP syncing, and port isolation. Running services on bare metal provides an intuitive understanding of networking that tutorials cannot teach.',
-    tags: ['Home Server', 'Coolify PaaS', 'Docker Containers', 'Dynamic DNS', 'Reverse Proxy', 'Networking'],
-    stat: 'Active Live Homelab @ abirdroid.ddns.net',
+    title: 'Android & Mobile App Development',
+    tagline: 'Native mobile interfaces, app architecture & device integration',
+    description: 'Mobile development is a foundational pillar of my journey — inspiring my developer identity as @Abir-droid. I develop Android applications with a focus on intuitive user interfaces, efficient background execution, and mobile system APIs. Working with mobile constraints has taught me discipline in resource management, asynchronous events, and touch UX.',
+    tags: ['Android Apps', 'Mobile Dev', 'Java / Kotlin', 'UI/UX Architecture', 'Device APIs'],
+    stat: 'Native Android Apps Built',
     color: 'from-emerald-500/20 via-teal-500/10 to-transparent',
     accentBorder: 'group-hover:border-emerald-500/50',
-    iconName: 'Server',
+    iconName: 'Smartphone',
   },
   {
     id: '03',
     number: '03',
-    title: 'AI & Emerging Technologies',
-    tagline: 'Local LLMs, autonomous tools & modern developer leverage',
-    description: 'I actively experiment with open-weight models using Ollama and local runtimes, investigating how modern developers can harness AI models for code assistance, data extraction, and workflow automation while retaining privacy and local control. I continuously follow advancements in software development tools to build faster and smarter.',
-    tags: ['Local LLMs', 'Ollama', 'Prompt Engineering', 'AI Tooling', 'Automation Pipelines'],
-    stat: 'Local AI Runtimes & Pipelines',
+    title: 'Self-Hosting, Databases & Homelab',
+    tagline: 'Personal home server, PostgreSQL, Docker & networking',
+    description: 'I maintain a dedicated home server hosting real-world web applications at abirdroid.ddns.net. Running Docker containers, managing PostgreSQL databases, configuring reverse proxy routing, and handling dynamic DNS on bare metal provides an irreplaceable foundation in real-world DevOps.',
+    tags: ['Home Server', 'PostgreSQL', 'Coolify PaaS', 'Docker Containers', 'Dynamic DNS'],
+    stat: 'Active Live Homelab @ abirdroid.ddns.net',
     color: 'from-indigo-500/20 via-purple-500/10 to-transparent',
     accentBorder: 'group-hover:border-accent-indigo/50',
-    iconName: 'Cpu',
+    iconName: 'Server',
   },
 ];
 
@@ -356,7 +265,7 @@ export const journeyMilestones: JourneyMilestone[] = [
     description: 'Pursuing a comprehensive curriculum spanning Software Architecture, Object-Oriented Design, Algorithm Design & Complexity, Database Systems, and Web Engineering.',
     keyLearnings: [
       'Data Structures & Algorithms in C',
-      'Database Modeling & Relational Queries (MySQL)',
+      'Database Modeling & Relational Queries (PostgreSQL & MySQL)',
       'Software Requirements Engineering & Agile development',
       'Active collaboration on academic projects & team codebases'
     ],
@@ -371,20 +280,22 @@ export const journeyMilestones: JourneyMilestone[] = [
     keyLearnings: [
       'Setup Dynamic DNS (DDNS) and secure reverse proxy routing',
       'Continuous deployment of web applications (ChatBox, QR Attendance, Planners)',
+      'PostgreSQL & MySQL database administration on bare metal',
       'Network security, firewall configuration, and uptime monitoring'
     ],
     type: 'homelab',
   },
   {
     period: '2023 — 2024',
-    role: 'Full-Stack & Systems Exploration',
+    role: 'Android, Full-Stack & Linux Exploration',
     institution: 'Practical Project Building',
     location: 'Dhaka, Bangladesh',
-    description: 'Began building end-to-end applications to solve everyday student problems: created the QR Attendance tracking system with Django, a WebRTC chat application, and custom desktop automation tools.',
+    description: 'Began building end-to-end applications: developed native Android apps, created the QR Attendance tracking system with Django & databases, built a WebRTC chat app, and hopped across 15+ Linux distributions.',
     keyLearnings: [
-      'Django backend architecture, ORM, and REST endpoints',
-      'WebRTC audio/video call integration with real-time sockets',
-      'Python automation and speech recognition scripts'
+      'Android app architecture, XML layouts, and mobile lifecycle',
+      'Django backend architecture, ORM, and PostgreSQL integration',
+      'Deep dive into 15–20 Linux distributions and shell automation',
+      'WebRTC audio/video call integration with real-time sockets'
     ],
     type: 'development',
   },
@@ -396,7 +307,7 @@ export const journeyMilestones: JourneyMilestone[] = [
     description: 'Participated in club assignments, programming problem sets, and foundational computing workshops that sparked my curiosity for software engineering and Linux customization.',
     keyLearnings: [
       'Introductory programming in C and JavaScript',
-      'First steps with Linux environments and desktop customization (autobloom)',
+      'First steps with Linux environments and desktop customization',
       'Algorithmic problem solving and logic development'
     ],
     type: 'club',

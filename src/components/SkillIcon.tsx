@@ -55,6 +55,11 @@ export const SkillIcon: React.FC<SkillIconProps> = ({ name, size = 18 }) => {
         <text x="2" y="18" fontFamily="Arial Black,sans-serif" fontSize="13" fontWeight="900" fill="#fff">Go</text>
       </svg>
     ),
+    'Android Development': (
+      <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v6c0 .83.67 1.5 1.5 1.5S5 16.33 5 15.5v-6C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v6c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-6c0-.83-.67-1.5-1.5-1.5zm-4.97-4.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C13.85 2.23 12.95 2 12 2c-.96 0-1.86.23-2.66.63L7.85 1.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31C6.73 4.29 5.5 6.01 5.5 8h13c0-1.99-1.23-3.71-2.97-4.84zM9 6c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm6 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z" fill="#3DDC84"/>
+      </svg>
+    ),
     Django: (
       <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
         <rect width="24" height="24" rx="3" fill="#092E20"/>
@@ -82,6 +87,14 @@ export const SkillIcon: React.FC<SkillIconProps> = ({ name, size = 18 }) => {
         <path d="M9 10l1.5 1.5L12 10l1.5 1.5L15 10" stroke="#34D399" strokeWidth="1.5" strokeLinecap="round"/>
       </svg>
     ),
+    PostgreSQL: (
+      <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
+        <rect width="24" height="24" rx="4" fill="#336791"/>
+        <path d="M17.5 11c-.2-1.5-1-2.8-2.3-3.6-1.5-.9-3.4-1-5-.3C8.8 7.7 7.7 9 7.2 10.6c-.6 1.8-.4 3.7.5 5.3.8 1.3 2.1 2.2 3.6 2.5 1.5.3 3.1-.1 4.4-.9" stroke="#fff" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
+        <path d="M12 10v4l2.5 1.5" stroke="#68B9E3" strokeWidth="1.4" strokeLinecap="round"/>
+        <circle cx="10" cy="11.5" r="1" fill="#68B9E3"/>
+      </svg>
+    ),
     MySQL: (
       <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
         <path d="M12 2C8 2 5 3.3 5 5v14c0 1.7 3 3 7 3s7-1.3 7-3V5c0-1.7-3-3-7-3z" fill="#005C84"/>
@@ -95,6 +108,16 @@ export const SkillIcon: React.FC<SkillIconProps> = ({ name, size = 18 }) => {
         <path d="M12 2C8 2 5 3.3 5 5v14c0 1.7 3 3 7 3s7-1.3 7-3V5c0-1.7-3-3-7-3z" fill="#003B57"/>
         <ellipse cx="12" cy="5" rx="7" ry="2.5" fill="#0F80CC"/>
         <path d="M5 9c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5" stroke="#53B0D8" strokeWidth="0.8" fill="none"/>
+      </svg>
+    ),
+    'Linux (15+ Distros Explored)': (
+      <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="11" fill="#1A1A2E"/>
+        <ellipse cx="12" cy="9" rx="3.5" ry="4" fill="#FFD700"/>
+        <circle cx="10.5" cy="8" r="0.7" fill="#1A1A2E"/>
+        <circle cx="13.5" cy="8" r="0.7" fill="#1A1A2E"/>
+        <path d="M10 11c0 0 2 1.5 4 0" stroke="#1A1A2E" strokeWidth="0.8" fill="none" strokeLinecap="round"/>
+        <path d="M9 13c-1.5 1-2 3-1.5 4.5M15 13c1.5 1 2 3 1.5 4.5M10.5 13.5v4.5M13.5 13.5v4.5M9 18h6" stroke="#FFD700" strokeWidth="1" fill="none" strokeLinecap="round"/>
       </svg>
     ),
     'Linux (Arch & Debian)': (

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Terminal as TerminalIcon, Copy, Check, Play, RefreshCw } from 'lucide-react';
+import { personalInfo } from '../data/portfolioData';
 
 interface TerminalTab {
   id: string;
@@ -31,19 +32,20 @@ export const TerminalHero: React.FC = () => {
 /_-''    ''-_\\`}
               </pre>
             </div>
-            <div className="space-y-1">
+            <div className="space-y-1 min-w-0">
               <div>
                 <span className="text-accent-cyan font-semibold">abir</span>
                 <span className="text-slate-400">@</span>
                 <span className="text-indigo-400 font-semibold">archlinux-homelab</span>
               </div>
               <div className="text-slate-500 text-[11px]">---------------------------</div>
-              <div><span className="text-slate-400">OS:</span> <span className="text-white">Arch Linux x86_64 / Debian</span></div>
-              <div><span className="text-slate-400">Role:</span> <span className="text-sky-300">Software Engineering Student</span></div>
-              <div><span className="text-slate-400">Institution:</span> <span className="text-slate-200">Daffodil Int. University (DIU)</span></div>
+              <div><span className="text-slate-400">Name:</span> <span className="text-white font-semibold">Md. Abirul Karim Sarkar</span></div>
+              <div><span className="text-slate-400">Role:</span> <span className="text-sky-300">Software Eng. Student @ DIU</span></div>
+              <div><span className="text-slate-400">Distros:</span> <span className="text-cyan-300">15+ Hopped (Arch, Debian, Fedora...)</span></div>
+              <div><span className="text-slate-400">Domains:</span> <span className="text-emerald-300">Android Apps · Web · Systems</span></div>
+              <div><span className="text-slate-400">Databases:</span> <span className="text-amber-300">PostgreSQL · MySQL · SQLite</span></div>
               <div><span className="text-slate-400">Homelab:</span> <span className="text-emerald-400 font-medium">Online (abirdroid.ddns.net)</span></div>
-              <div><span className="text-slate-400">Stack:</span> <span className="text-amber-300">Python · Django · JS · Docker · Coolify</span></div>
-              <div><span className="text-slate-400">Uptime:</span> <span className="text-emerald-400">99.8% (Continuous learning)</span></div>
+              <div><span className="text-slate-400">Contact:</span> <span className="text-indigo-300">aksarker2019@gmail.com</span></div>
             </div>
           </div>
         </div>
@@ -91,7 +93,7 @@ export const TerminalHero: React.FC = () => {
             <span className="text-sky-300">study-planner</span>
           </div>
           <div className="pt-2 text-slate-400 text-[10px]">
-            ➜ Total: 4 containers active · Network gateway: abirdroid.ddns.net
+            ➜ Active services on personal home server · abirdroid.ddns.net
           </div>
         </div>
       ),
@@ -102,19 +104,19 @@ export const TerminalHero: React.FC = () => {
       command: 'cat ~/philosophy.md',
       output: (
         <div className="font-mono text-xs leading-relaxed space-y-2 text-slate-300">
-          <p className="text-sky-300 font-semibold">## Core Engineering Principles</p>
+          <p className="text-sky-300 font-semibold">## Core Engineering Philosophy</p>
           <ul className="space-y-1.5 text-slate-300 pl-2">
             <li>
               <span className="text-accent-cyan font-mono">01.</span>{' '}
-              <strong className="text-white">Learn by Building:</strong> Real software teaches edge cases tutorials never mention.
+              <strong className="text-white">Learn by Exploring:</strong> Mobile, web, systems, databases — curiosity over narrow labels.
             </li>
             <li>
               <span className="text-accent-cyan font-mono">02.</span>{' '}
-              <strong className="text-white">Understand the Underlying Systems:</strong> Knowing how Linux, memory, and networking operate makes code better.
+              <strong className="text-white">Hands-on Systems:</strong> Distro hopping across 15+ OSes taught me what tutorials never can.
             </li>
             <li>
               <span className="text-accent-cyan font-mono">03.</span>{' '}
-              <strong className="text-white">Ownership from Code to Bare Metal:</strong> Deploying on a home server sharpens DevOps and debugging intuition.
+              <strong className="text-white">End-to-End Ownership:</strong> From writing client UI to managing databases and bare-metal servers.
             </li>
           </ul>
         </div>
@@ -125,7 +127,7 @@ export const TerminalHero: React.FC = () => {
   const currentTab = tabs.find((t) => t.id === activeTab) || tabs[0];
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(`ssh abir@abirdroid.ddns.net -p 22`);
+    navigator.clipboard.writeText(personalInfo.email);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -154,7 +156,7 @@ export const TerminalHero: React.FC = () => {
                     : 'text-slate-400 hover:text-slate-200 hover:bg-white/5'
                 }`}
               >
-                <span>{tab.id === 'neofetch' ? '💻' : tab.id === 'homelab' ? '🐳' : '📝'}</span>
+                <span>{tab.id === 'neofetch' ? '💻' : tab.id === 'homelab' ? '🐳' : '📜'}</span>
                 {tab.name}
               </button>
             ))}
@@ -164,7 +166,7 @@ export const TerminalHero: React.FC = () => {
         {/* Action button */}
         <button
           onClick={handleCopy}
-          title="Copy SSH snippet"
+          title="Copy email address"
           className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors flex items-center gap-1 text-[11px]"
         >
           {copied ? (
@@ -203,7 +205,7 @@ export const TerminalHero: React.FC = () => {
         <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] text-slate-400 font-mono">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Bash 5.2.26 · Linux 6.10-arch</span>
+            <span>Bash 5.2.26 · Linux · 15+ Distros</span>
           </div>
           <span className="text-slate-400 hidden sm:inline">UTF-8 · Interactive Console</span>
         </div>

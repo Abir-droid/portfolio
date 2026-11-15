@@ -1,141 +1,83 @@
 import React from 'react';
-import { Terminal, Server, Cpu, ArrowUpRight, CheckCircle, Shield, Network, Bot } from 'lucide-react';
+import { Terminal, Server, Cpu, Bot } from 'lucide-react';
 import { beyondTheCode } from '../data/portfolioData';
+
+const icons = [
+  <Terminal className="w-5 h-5" />,
+  <Server className="w-5 h-5" />,
+  <Cpu className="w-5 h-5" />,
+];
+
+const accentColors = [
+  { text: 'text-cyan-400', bg: 'bg-cyan-500/10', border: 'border-cyan-500/20', glow: 'bg-cyan-500' },
+  { text: 'text-emerald-400', bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', glow: 'bg-emerald-500' },
+  { text: 'text-indigo-400', bg: 'bg-indigo-500/10', border: 'border-indigo-500/20', glow: 'bg-indigo-500' },
+];
 
 export const BeyondCode: React.FC = () => {
   return (
-    <section id="beyond" className="py-20 lg:py-28 relative">
+    <section id="beyond" className="py-24 lg:py-32 relative">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/8 to-transparent" />
+
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        
-        {/* Section Header */}
-        <div className="mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-accent-cyan/10 border border-accent-cyan/20 text-accent-cyan text-xs font-mono mb-3">
-            <span>04 // BEYOND ORDINARY WEB DEV</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Beyond the Code
+
+        {/* Header */}
+        <div className="mb-16">
+          <span className="text-xs font-mono tracking-widest text-accent-cyan uppercase">04 · Beyond Ordinary Web Dev</span>
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mt-3 max-w-2xl leading-tight">
+            More than a<br />
+            <span className="text-slate-400 font-light">web developer.</span>
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
-            What sets me apart: deep curiosity for operating systems, self-hosted bare metal infrastructure, and exploring local AI.
+          <p className="text-slate-400 mt-4 max-w-xl text-base leading-relaxed">
+            I inhabit the full stack — from browser to bare metal. These are the areas that define my technical identity.
           </p>
         </div>
 
-        {/* 3 Large Visual Feature Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {beyondTheCode.map((item) => {
-            const isLinux = item.id === '01';
-            const isHomelab = item.id === '02';
-            const isAI = item.id === '03';
-
+        {/* 3 large editorial feature rows */}
+        <div className="space-y-0">
+          {beyondTheCode.map((item, idx) => {
+            const color = accentColors[idx];
+            const isEven = idx % 2 === 0;
             return (
               <div
                 key={item.id}
-                className="group relative rounded-2xl glass-card-glow p-7 border border-white/10 hover:border-accent-cyan/40 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-xl"
+                className="group grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 py-12 border-t border-white/8 items-center"
               >
-                {/* Atmospheric Glow in background */}
-                <div
-                  className={`absolute -top-24 -right-24 w-52 h-52 rounded-full blur-[80px] pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity duration-500 ${
-                    isLinux
-                      ? 'bg-cyan-500'
-                      : isHomelab
-                      ? 'bg-emerald-500'
-                      : 'bg-indigo-500'
-                  }`}
-                />
+                {/* Number — large editorial */}
+                <div className={`lg:col-span-1 ${isEven ? '' : 'lg:order-last'}`}>
+                  <span className="text-5xl font-extrabold text-white/5 group-hover:text-white/10 transition-colors font-mono select-none">
+                    {item.number}
+                  </span>
+                </div>
 
-                <div>
-                  {/* Card Number & Icon */}
-                  <div className="flex items-center justify-between pb-6 border-b border-white/10">
-                    <span className="font-mono text-3xl font-extrabold text-slate-400 group-hover:text-white transition-colors">
-                      {item.number}
-                    </span>
-                    <div
-                      className={`p-3 rounded-xl border transition-colors ${
-                        isLinux
-                          ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400'
-                          : isHomelab
-                          ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'
-                          : 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400'
-                      }`}
-                    >
-                      {isLinux && <Terminal className="w-5 h-5" />}
-                      {isHomelab && <Server className="w-5 h-5" />}
-                      {isAI && <Cpu className="w-5 h-5" />}
-                    </div>
-                  </div>
-
-                  {/* Title & Tagline */}
-                  <div className="pt-6">
-                    <h3 className="text-xl font-bold text-white tracking-tight group-hover:text-accent-cyan transition-colors">
-                      {item.title}
-                    </h3>
-                    <p
-                      className={`text-xs font-mono mt-1 ${
-                        isLinux
-                          ? 'text-cyan-300'
-                          : isHomelab
-                          ? 'text-emerald-300'
-                          : 'text-indigo-300'
-                      }`}
-                    >
-                      {item.tagline}
-                    </p>
-                  </div>
-
-                  {/* Narrative */}
-                  <p className="text-xs sm:text-sm text-slate-300 mt-4 leading-relaxed">
-                    {item.description}
-                  </p>
-
-                  {/* Visual Detail Box */}
-                  <div className="mt-5 p-3.5 rounded-xl bg-surface-400/80 border border-white/5 font-mono text-xs">
-                    {isLinux && (
-                      <div className="space-y-1.5 text-slate-300">
-                        <div className="text-cyan-400 font-semibold text-[11px] flex items-center gap-1.5">
-                          <span>$ uname -r</span>
-                        </div>
-                        <div className="text-[11px] text-slate-400 pl-2">
-                          Linux 6.10-arch · Hyprland/WM · Bash/Zsh Custom Dotfiles
-                        </div>
-                      </div>
-                    )}
-                    {isHomelab && (
-                      <div className="space-y-1.5 text-slate-300">
-                        <div className="text-emerald-400 font-semibold text-[11px] flex items-center gap-1.5">
-                          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                          <span>abirdroid.ddns.net</span>
-                        </div>
-                        <div className="text-[11px] text-slate-400 pl-2">
-                          Reverse Proxy · Let's Encrypt SSL · Docker Engine & Coolify
-                        </div>
-                      </div>
-                    )}
-                    {isAI && (
-                      <div className="space-y-1.5 text-slate-300">
-                        <div className="text-indigo-400 font-semibold text-[11px] flex items-center gap-1.5">
-                          <Bot className="w-3.5 h-3.5" />
-                          <span>Local Model Inference</span>
-                        </div>
-                        <div className="text-[11px] text-slate-400 pl-2">
-                          Ollama runtime · Prompt engineering · Coding assistants
-                        </div>
-                      </div>
-                    )}
+                {/* Icon block */}
+                <div className={`lg:col-span-1 ${isEven ? '' : 'lg:order-first'}`}>
+                  <div className={`w-12 h-12 rounded-2xl ${color.bg} border ${color.border} ${color.text} flex items-center justify-center`}>
+                    {icons[idx]}
                   </div>
                 </div>
 
-                {/* Footer Tags */}
-                <div className="mt-6 pt-4 border-t border-white/5">
-                  <div className="flex flex-wrap gap-1.5">
-                    {item.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-surface-200/90 text-slate-300 border border-white/5"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                {/* Content */}
+                <div className="lg:col-span-6">
+                  <h3 className={`text-2xl sm:text-3xl font-bold text-white tracking-tight mb-2 group-hover:${color.text} transition-colors`}>
+                    {item.title}
+                  </h3>
+                  <p className={`text-sm font-mono mb-4 ${color.text}`}>{item.tagline}</p>
+                  <p className="text-slate-300 text-base leading-relaxed max-w-lg">
+                    {item.description}
+                  </p>
+                </div>
+
+                {/* Tags — right side */}
+                <div className="lg:col-span-4 flex flex-wrap gap-2">
+                  {item.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className={`text-xs font-mono px-3 py-1.5 rounded-lg ${color.bg} border ${color.border} ${color.text}`}
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </div>
             );

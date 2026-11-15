@@ -1,231 +1,210 @@
 import React, { useState } from 'react';
-import { 
-  Github, 
-  ExternalLink, 
-  Terminal, 
-  Sparkles, 
-  Server, 
-  Layers, 
-  Code2, 
-  Eye, 
-  ArrowUpRight,
-  Filter
-} from 'lucide-react';
+import { Github, ExternalLink, ArrowUpRight, Eye, ArrowRight } from 'lucide-react';
 import { projects } from '../data/portfolioData';
-import { Project, ProjectCategory } from '../types';
+import { Project } from '../types';
 import { ProjectModal } from './ProjectModal';
 
-const categories: { label: string; value: ProjectCategory }[] = [
-  { label: 'All Projects', value: 'all' },
-  { label: 'Full-Stack & Realtime', value: 'fullstack' },
-  { label: 'Python & Django', value: 'python' },
-  { label: 'Systems & Linux', value: 'systems' },
-  { label: 'Frontend', value: 'frontend' },
-];
+// Pick the 6 strongest verified projects
+const featuredIds = ['chatbox', 'qr-attendance', 'mystudy-planner', 'complaint-management-system', 'tictactoe-go', 'custom-omarchy'];
+const featuredProjects = projects.filter(p => featuredIds.includes(p.id));
+const flagship = featuredProjects[0]; // chatbox is flagship
+const rest = featuredProjects.slice(1);
+
+const techColors: Record<string, string> = {
+  'JavaScript': 'text-amber-300 bg-amber-500/10 border-amber-500/20',
+  'Python': 'text-sky-300 bg-sky-500/10 border-sky-500/20',
+  'Go (Golang)': 'text-cyan-300 bg-cyan-500/10 border-cyan-500/20',
+  'Django': 'text-emerald-300 bg-emerald-500/10 border-emerald-500/20',
+  'Docker': 'text-blue-300 bg-blue-500/10 border-blue-500/20',
+  'default': 'text-slate-300 bg-white/5 border-white/10',
+};
+
+function techBadge(tech: string) {
+  const cls = techColors[tech] || techColors['default'];
+  return (
+    <span key={tech} className={`text-[11px] font-mono px-2 py-0.5 rounded-md border ${cls}`}>
+      {tech}
+    </span>
+  );
+}
 
 export const Projects: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>('all');
   const [activeProject, setActiveProject] = useState<Project | null>(null);
 
-  const filteredProjects = selectedCategory === 'all'
-    ? projects
-    : projects.filter(p => p.category === selectedCategory);
-
   return (
-    <section id="projects" className="py-20 lg:py-28 relative">
+    <section id="projects" className="py-24 lg:py-32 relative">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/8 to-transparent" />
+
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-accent-cyan/10 border border-accent-cyan/20 text-accent-cyan text-xs font-mono mb-3">
-              <span>03 // FEATURED WORK</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Crafted Projects
+            <span className="text-xs font-mono tracking-widest text-accent-cyan uppercase">03 · Crafted Projects</span>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mt-3 leading-tight">
+              Things I've built.
             </h2>
-            <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-xl">
-              Authentic applications, web systems, and tools built from scratch and verified in public GitHub repositories.
+            <p className="text-slate-400 mt-3 max-w-md text-base">
+              Real applications running live on my homelab — not demos. Every project is on GitHub.
             </p>
           </div>
-
-          {/* Filter Tabs */}
-          <div className="flex flex-wrap items-center gap-2 bg-surface-100/70 p-1.5 rounded-xl border border-white/5 backdrop-blur-md">
-            {categories.map((cat) => (
-              <button
-                key={cat.value}
-                onClick={() => setSelectedCategory(cat.value)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all ${
-                  selectedCategory === cat.value
-                    ? 'bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-semibold shadow-md'
-                    : 'text-slate-400 hover:text-white hover:bg-white/5'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </div>
+          <a
+            href="https://github.com/Abir-droid?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-sm font-mono text-slate-300 hover:text-accent-cyan transition-colors shrink-0 group"
+          >
+            <Github className="w-4 h-4" />
+            All repos on GitHub
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+          </a>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
-          {filteredProjects.map((project) => (
-            <div
-              key={project.id}
-              className="group rounded-2xl glass-card-glow border border-white/10 hover:border-accent-cyan/40 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-sky-950/20"
-            >
+        {/* FLAGSHIP — full-width hero card */}
+        <div className="mb-8 group relative rounded-2xl border border-white/10 hover:border-accent-cyan/40 transition-all duration-300 overflow-hidden bg-gradient-to-br from-surface-100/80 to-surface-400/60 shadow-2xl">
+          {/* Background glow */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-sky-500/5 blur-[100px] rounded-full pointer-events-none" />
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+            {/* Left: Content */}
+            <div className="p-8 sm:p-10 flex flex-col justify-between relative z-10">
               <div>
-                {/* Visual Header / Terminal Preview Banner */}
-                <div className="bg-gradient-to-b from-surface-100 to-surface-300 p-5 border-b border-white/5 relative overflow-hidden">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-1.5">
-                      <span className="w-2.5 h-2.5 rounded-full bg-rose-500/70" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-amber-500/70" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/70" />
-                      <span className="text-[11px] font-mono text-slate-400 ml-2">
-                        {project.id}.app
-                      </span>
-                    </div>
-
-                    {project.badge && (
-                      <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-sky-500/15 text-sky-300 border border-sky-500/25">
-                        {project.badge}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Mock Preview Content */}
-                  <div className="rounded-lg bg-surface-400/90 p-3.5 border border-white/5 font-mono text-xs text-slate-300">
-                    <div className="flex items-center justify-between text-slate-400 text-[11px] pb-2 border-b border-white/5">
-                      <span>Stack: {project.techStack.slice(0, 3).join(' · ')}</span>
-                      {project.liveUrl ? (
-                        <span className="text-emerald-400 flex items-center gap-1">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                          Homelab Live
-                        </span>
-                      ) : (
-                        <span className="text-slate-400">Open Source</span>
-                      )}
-                    </div>
-                    <div className="pt-2 text-[11px] text-sky-300/90 truncate">
-                      $ git clone {project.githubUrl}.git
-                    </div>
-                  </div>
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="text-[11px] font-mono px-2.5 py-1 rounded-full bg-sky-500/15 text-sky-300 border border-sky-500/25">
+                    Flagship Project
+                  </span>
+                  {flagship.liveUrl && (
+                    <span className="text-[11px] font-mono flex items-center gap-1 text-emerald-400">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      Live on Homelab
+                    </span>
+                  )}
                 </div>
 
-                {/* Content Body */}
-                <div className="p-6 space-y-4">
-                  <div>
-                    <div className="text-xs font-mono text-accent-cyan mb-1 uppercase tracking-wider">
-                      {project.categoryLabel}
-                    </div>
-                    <h3 className="text-xl font-bold text-white tracking-tight group-hover:text-accent-cyan transition-colors flex items-center justify-between">
-                      <span>{project.name}</span>
-                      <button
-                        onClick={() => setActiveProject(project)}
-                        className="text-slate-400 hover:text-white p-1 rounded-md"
-                        title="Quick View"
-                      >
-                        <Eye className="w-4 h-4" />
-                      </button>
-                    </h3>
-                    <p className="text-xs text-sky-300 font-mono mt-1">
-                      {project.tagline}
-                    </p>
-                  </div>
+                <h3 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight mb-3">
+                  {flagship.name}
+                </h3>
+                <p className="text-sky-300 font-mono text-sm mb-4">{flagship.tagline}</p>
+                <p className="text-slate-300 text-base leading-relaxed mb-6">
+                  {flagship.description}
+                </p>
 
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed line-clamp-3">
-                    {project.description}
-                  </p>
-
-                  {/* Highlights Bullet points */}
-                  <div className="space-y-1.5 pt-1">
-                    {project.highlights.slice(0, 2).map((highlight, idx) => (
-                      <div key={idx} className="flex items-start gap-2 text-xs text-slate-400">
-                        <span className="text-accent-cyan font-mono">→</span>
-                        <span>{highlight}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Tech Stack Pills */}
-                  <div className="flex flex-wrap gap-1.5 pt-2">
-                    {project.techStack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="text-[11px] font-mono px-2 py-0.5 rounded-md bg-surface-200 text-slate-300 border border-white/5"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                <div className="flex flex-wrap gap-1.5 mb-8">
+                  {flagship.techStack.map(techBadge)}
                 </div>
               </div>
 
-              {/* Action Buttons Footer */}
-              <div className="p-6 pt-0 border-t border-white/5 mt-4 flex items-center justify-between gap-3">
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-xl bg-surface-200 hover:bg-surface-100 border border-white/10 hover:border-white/20 text-slate-200 hover:text-white text-xs font-mono flex items-center gap-2 transition-all"
-                >
-                  <Github className="w-4 h-4" />
-                  <span>GitHub</span>
+              <div className="flex items-center gap-3">
+                <a href={flagship.githubUrl} target="_blank" rel="noopener noreferrer"
+                  className="px-5 py-2.5 rounded-xl bg-surface-200 hover:bg-surface-100 border border-white/15 text-sm font-semibold text-white flex items-center gap-2 transition-all">
+                  <Github className="w-4 h-4" /> GitHub
                 </a>
-
-                {project.liveUrl ? (
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 text-white text-xs font-semibold flex items-center gap-1.5 shadow-md shadow-sky-500/20 hover:opacity-95 transition-all"
-                  >
-                    <span>Live Demo</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
+                {flagship.liveUrl && (
+                  <a href={flagship.liveUrl} target="_blank" rel="noopener noreferrer"
+                    className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 text-white text-sm font-semibold flex items-center gap-2 shadow-lg shadow-sky-500/20 hover:opacity-95 transition-all">
+                    Live Demo <ArrowUpRight className="w-4 h-4" />
                   </a>
-                ) : (
-                  <button
-                    onClick={() => setActiveProject(project)}
-                    className="text-xs font-mono text-slate-400 hover:text-accent-cyan transition-colors"
-                  >
-                    Details & Architecture →
-                  </button>
                 )}
+              </div>
+            </div>
+
+            {/* Right: Terminal preview panel */}
+            <div className="relative bg-surface-400/80 border-l border-white/8 p-6 sm:p-8 font-mono text-xs flex flex-col justify-center min-h-[280px]">
+              <div className="flex items-center gap-1.5 mb-5">
+                <span className="w-2.5 h-2.5 rounded-full bg-rose-500/70" />
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-500/70" />
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/70" />
+                <span className="text-slate-400 ml-2 text-[11px]">chatbox · runtime</span>
+              </div>
+              <div className="space-y-2.5 text-slate-300">
+                <div><span className="text-accent-cyan">$</span> docker ps --filter name=chatbox</div>
+                <div className="pl-3 text-emerald-400">Container: abir-chatbox — Up 14 days</div>
+                <div><span className="text-accent-cyan">$</span> cat features.md</div>
+                <div className="pl-3 space-y-1 text-slate-300">
+                  <div>→ Real-time WebSocket messaging</div>
+                  <div>→ Peer-to-peer audio/video (WebRTC)</div>
+                  <div>→ Self-hosted, zero third-party dependency</div>
+                  <div>→ Mobile-responsive progressive web app</div>
+                </div>
+                <div className="pt-2 text-slate-500 text-[11px]">— Deployed via Coolify · abirdroid.ddns.net/chatbox</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Rest: 2-column grid with varied sizes */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {rest.map((project, idx) => (
+            <div
+              key={project.id}
+              className="group rounded-2xl border border-white/10 hover:border-accent-cyan/40 transition-all duration-300 overflow-hidden bg-gradient-to-br from-surface-100/50 to-surface-400/40 flex flex-col"
+            >
+              {/* Card header bar */}
+              <div className="bg-surface-200/60 px-5 py-3.5 border-b border-white/5 flex items-center justify-between">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-rose-500/60" />
+                  <span className="w-2 h-2 rounded-full bg-amber-500/60" />
+                  <span className="w-2 h-2 rounded-full bg-emerald-500/60" />
+                  <span className="text-[11px] font-mono text-slate-400 ml-2">{project.id}</span>
+                </div>
+                {project.liveUrl && (
+                  <span className="text-[10px] font-mono flex items-center gap-1 text-emerald-400">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />Live
+                  </span>
+                )}
+              </div>
+
+              {/* Card body */}
+              <div className="p-5 sm:p-6 flex flex-col flex-1">
+                <div className="mb-1 text-xs font-mono text-accent-cyan uppercase tracking-wider">{project.categoryLabel}</div>
+                <h3 className="text-lg font-bold text-white tracking-tight group-hover:text-accent-cyan transition-colors mb-1">
+                  {project.name}
+                </h3>
+                <p className="text-xs text-sky-300 font-mono mb-3">{project.tagline}</p>
+                <p className="text-sm text-slate-300 leading-relaxed mb-4 flex-1">{project.description}</p>
+
+                <div className="flex flex-wrap gap-1.5 mb-5">
+                  {project.techStack.slice(0, 4).map(techBadge)}
+                </div>
+
+                <div className="flex items-center gap-3 pt-4 border-t border-white/5">
+                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 text-xs font-mono text-slate-300 hover:text-white transition-colors">
+                    <Github className="w-3.5 h-3.5" /> Source
+                  </a>
+                  {project.liveUrl ? (
+                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 text-xs font-mono text-accent-cyan hover:text-white transition-colors">
+                      <ExternalLink className="w-3.5 h-3.5" /> Live Demo
+                    </a>
+                  ) : (
+                    <button onClick={() => setActiveProject(project)}
+                      className="flex items-center gap-1.5 text-xs font-mono text-slate-400 hover:text-accent-cyan transition-colors">
+                      <Eye className="w-3.5 h-3.5" /> Details
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* View All Projects on GitHub CTA */}
-        <div className="mt-14 text-center">
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-5 rounded-2xl glass-panel border border-white/10 shadow-xl">
-            <div className="text-left">
-              <h4 className="text-white text-sm font-bold">Want to explore all my repositories?</h4>
-              <p className="text-slate-400 text-xs mt-0.5 font-mono">
-                Explore algorithms, Windows scripts (autobloom), manhwa automation, and labs on my public profile.
-              </p>
-            </div>
-            <a
-              href="https://github.com/Abir-droid?tab=repositories"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-5 py-2.5 rounded-xl bg-surface-100 hover:bg-surface-50 border border-white/15 text-white text-xs font-mono flex items-center gap-2 transition-all shrink-0 hover:border-accent-cyan/40"
-            >
-              <Github className="w-4 h-4 text-accent-cyan" />
-              <span>View All Projects on GitHub</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-          </div>
+        {/* View all CTA */}
+        <div className="mt-12 text-center">
+          <a
+            href="https://github.com/Abir-droid?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl border border-white/10 hover:border-accent-cyan/40 text-slate-300 hover:text-white text-sm font-mono transition-all hover:bg-white/5 group"
+          >
+            <Github className="w-4 h-4 text-accent-cyan" />
+            View All Projects on GitHub
+            <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </a>
         </div>
-
       </div>
 
-      {/* Project Details Modal */}
-      <ProjectModal
-        project={activeProject}
-        onClose={() => setActiveProject(null)}
-      />
+      <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} />
     </section>
   );
 };

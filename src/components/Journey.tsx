@@ -1,85 +1,101 @@
 import React from 'react';
-import { GraduationCap, Server, Code, Award, MapPin, CheckCircle2 } from 'lucide-react';
-import { journeyMilestones } from '../data/portfolioData';
-
-const milestoneIcons = {
-  education: <GraduationCap className="w-4 h-4 text-sky-400" />,
-  homelab: <Server className="w-4 h-4 text-emerald-400" />,
-  development: <Code className="w-4 h-4 text-indigo-400" />,
-  club: <Award className="w-4 h-4 text-amber-400" />,
-};
-
-const milestoneColors = {
-  education: 'border-sky-500/40 bg-sky-500/5',
-  homelab: 'border-emerald-500/40 bg-emerald-500/5',
-  development: 'border-indigo-500/40 bg-indigo-500/5',
-  club: 'border-amber-500/40 bg-amber-500/5',
-};
+import { motion } from 'framer-motion';
+import { GraduationCap, Server, Code, Users, MapPin, Calendar, CheckCircle2 } from 'lucide-react';
+import { journeyMilestones, personalInfo } from '../data/portfolioData';
 
 export const Journey: React.FC = () => {
+  const getIcon = (type: string) => {
+    switch (type) {
+      case 'education': return <GraduationCap className="w-5 h-5 text-cyan-400" />;
+      case 'homelab': return <Server className="w-5 h-5 text-emerald-400" />;
+      case 'development': return <Code className="w-5 h-5 text-sky-400" />;
+      case 'club': return <Users className="w-5 h-5 text-amber-400" />;
+      default: return <GraduationCap className="w-5 h-5 text-cyan-400" />;
+    }
+  };
+
   return (
-    <section id="journey" className="py-20 lg:py-28 relative overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/8 to-transparent" />
+    <section id="journey" className="py-24 lg:py-32 relative overflow-hidden bg-surface-500/60">
+      {/* Top divider */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent" />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
-
-        {/* Header */}
-        <div className="mb-16">
-          <span className="text-xs font-mono tracking-widest text-accent-cyan uppercase">05 · Timeline</span>
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mt-3 leading-tight">
-            My Journey
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
+        
+        {/* Section Header */}
+        <div className="mb-14">
+          <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-accent-cyan uppercase">
+            <span>06</span>
+            <span>·</span>
+            <span>Background &amp; Milestones</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mt-2">
+            Academic &amp; Engineering Path
           </h2>
-          <p className="text-slate-400 mt-3 max-w-md text-base">
-            Education, homelab milestones, and continuous technical growth — only verified events.
+          <p className="text-slate-300 mt-3 max-w-xl text-base leading-relaxed font-light">
+            {personalInfo.bioShort}
           </p>
         </div>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-accent-cyan/40 via-white/10 to-transparent" />
+        {/* Visual Timeline Stream */}
+        <div className="relative border-l border-white/10 ml-4 sm:ml-8 pl-6 sm:pl-10 space-y-12">
+          {journeyMilestones.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="relative group"
+            >
+              {/* Timeline marker icon */}
+              <div className="absolute -left-[35px] sm:-left-[51px] top-1.5 w-10 h-10 rounded-2xl bg-surface-200 border border-white/15 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:border-accent-cyan/50 transition-all duration-300">
+                {getIcon(item.type)}
+              </div>
 
-          <div className="space-y-10 pl-14">
-            {journeyMilestones.map((milestone, idx) => (
-              <div key={idx} className="relative group">
-                {/* Dot */}
-                <div className={`absolute -left-[42px] top-1.5 w-9 h-9 rounded-xl border flex items-center justify-center ${milestoneColors[milestone.type]} shadow-sm`}>
-                  {milestoneIcons[milestone.type]}
+              {/* Milestone Card */}
+              <div className="p-6 sm:p-7 rounded-2xl border border-white/10 bg-surface-200/60 hover:bg-surface-200/90 transition-all duration-300 backdrop-blur-sm">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                  <span className="text-xs font-mono px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 w-fit">
+                    {item.period}
+                  </span>
+                  <div className="flex items-center gap-1.5 text-xs text-slate-400 font-mono">
+                    <MapPin className="w-3.5 h-3.5 text-rose-400" />
+                    <span>{item.location}</span>
+                  </div>
                 </div>
 
-                {/* Content */}
-                <div className="pt-0.5">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
-                    <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-white/5 text-slate-400 border border-white/8 self-start">
-                      {milestone.period}
-                    </span>
-                    <div className="flex items-center gap-1.5 text-xs font-mono text-slate-500">
-                      <MapPin className="w-3 h-3 text-rose-400" />
-                      {milestone.location}
-                    </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight mb-1">
+                  {item.role}
+                </h3>
+                
+                <div className="text-xs sm:text-sm font-mono text-accent-cyan mb-3">
+                  {item.institution}
+                </div>
+
+                <p className="text-slate-300 text-sm leading-relaxed mb-4 font-light">
+                  {item.description}
+                </p>
+
+                {/* Key Learnings Tags */}
+                <div className="pt-3 border-t border-white/5">
+                  <div className="text-[10px] font-mono uppercase text-slate-400 tracking-wider mb-2">
+                    Key Focus Areas
                   </div>
-
-                  <h3 className="text-xl font-bold text-white tracking-tight group-hover:text-accent-cyan transition-colors">
-                    {milestone.role}
-                  </h3>
-                  <p className="text-slate-400 text-sm mt-0.5 mb-3">{milestone.institution}</p>
-                  <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-4">
-                    {milestone.description}
-                  </p>
-
-                  {/* Key learnings as simple list */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-                    {milestone.keyLearnings.map((learning, lIdx) => (
-                      <div key={lIdx} className="flex items-start gap-2 text-xs text-slate-400">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-accent-cyan shrink-0 mt-0.5" />
+                  <div className="flex flex-wrap gap-2">
+                    {item.keyLearnings.map((learning, idx) => (
+                      <span
+                        key={idx}
+                        className="flex items-center gap-1.5 text-xs font-mono px-3 py-1 rounded-lg bg-surface-400/80 border border-white/5 text-slate-200"
+                      >
+                        <CheckCircle2 className="w-3 h-3 text-cyan-400" />
                         <span>{learning}</span>
-                      </div>
+                      </span>
                     ))}
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+            </motion.div>
+          ))}
         </div>
 
       </div>

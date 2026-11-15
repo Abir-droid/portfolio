@@ -1,11 +1,11 @@
-export type ProjectCategory = 'all' | 'fullstack' | 'python' | 'systems' | 'frontend';
+export type ProjectCategory = 'all' | 'fullstack' | 'systems' | 'frontend' | 'automation';
 
 export interface Project {
   id: string;
   name: string;
   tagline: string;
   description: string;
-  category: 'fullstack' | 'python' | 'systems' | 'frontend';
+  category: ProjectCategory;
   categoryLabel: string;
   techStack: string[];
   githubUrl: string;
@@ -15,25 +15,54 @@ export interface Project {
   architecture?: string;
   learnings?: string;
   badge?: string;
-  stats?: {
-    stars?: number;
-    language?: string;
-    status?: string;
-  };
+  deploymentInfo?: string;
 }
 
-export interface SkillItem {
+export interface GitHubRepo {
   name: string;
-  level: 'proficient' | 'exploring';
-  icon?: string;
-  details?: string;
+  fullName: string;
+  description: string | null;
+  url: string;
+  homepage: string | null;
+  stars: number;
+  forks: number;
+  language: string | null;
+  updatedAt: string;
+  createdAt: string;
+  topics: string[];
 }
 
-export interface SkillCategory {
-  title: string;
-  subtitle: string;
-  iconName: string;
-  skills: SkillItem[];
+export interface GitHubData {
+  username: string;
+  avatarUrl: string;
+  bio: string | null;
+  publicRepos: number;
+  ownReposCount: number;
+  totalStars: number;
+  totalForks: number;
+  languageBytes: Record<string, number>;
+  repos: GitHubRepo[];
+  fetchedAt: string;
+}
+
+export interface TechItem {
+  name: string;
+  category: 'programming' | 'web' | 'databases' | 'os' | 'infra' | 'ai';
+  status: 'Daily Driver' | 'Active Project' | 'Production Deployed' | 'Lab Tested' | 'Exploring';
+  description: string;
+  projectsUsedIn: string[];
+}
+
+export interface InfrastructureNode {
+  id: string;
+  label: string;
+  sublabel: string;
+  layer: 'edge' | 'dns' | 'network' | 'server' | 'orchestration' | 'workload';
+  icon: string;
+  status: string;
+  tech: string;
+  description: string;
+  spec: string;
 }
 
 export interface JourneyMilestone {

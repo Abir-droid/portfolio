@@ -3,92 +3,129 @@ import React from 'react';
 interface SkillIconProps {
   name: string;
   size?: number;
+  className?: string;
 }
 
-export const SkillIcon: React.FC<SkillIconProps> = ({ name, size = 18 }) => {
+export const SkillIcon: React.FC<SkillIconProps> = ({ name, size = 18, className = '' }) => {
   const s = size;
 
   const icons: Record<string, JSX.Element> = {
     Python: (
-      <svg viewBox="0 0 24 24" width={s} height={s} fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 2C8.5 2 8 3.6 8 5v2h4v.5H5.5C4.1 7.5 3 8.6 3 10.5v3C3 15.4 4.1 16.5 5.5 16.5H7v-2.5c0-1.7 1.4-2.5 2.5-2.5h5c1.1 0 2-1 2-2V5C16.5 3.1 14.5 2 12 2zM10 5.5a.75.75 0 110 1.5.75.75 0 010-1.5z" fill="#3776AB"/>
         <path d="M12 22c3.5 0 4-1.6 4-3v-2h-4v-.5h6.5c1.4 0 2.5-1.1 2.5-3v-3C21 8.6 19.9 7.5 18.5 7.5H17v2.5c0 1.7-1.4 2.5-2.5 2.5h-5c-1.1 0-2 1-2 2V19C7.5 20.9 9.5 22 12 22zM14 18.5a.75.75 0 110-1.5.75.75 0 010 1.5z" fill="#FFD43B"/>
       </svg>
     ),
     JavaScript: (
-      <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
         <rect width="24" height="24" rx="3" fill="#F7DF1E"/>
         <text x="4" y="19" fontFamily="Arial Black,sans-serif" fontSize="13" fontWeight="900" fill="#000">JS</text>
       </svg>
     ),
+    'JavaScript / TypeScript': (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
+        <rect width="12" height="24" rx="3" fill="#F7DF1E"/>
+        <rect x="12" width="12" height="24" rx="3" fill="#3178C6"/>
+        <text x="2" y="18" fontFamily="Arial Black,sans-serif" fontSize="10" fontWeight="900" fill="#000">J</text>
+        <text x="14" y="18" fontFamily="Arial Black,sans-serif" fontSize="10" fontWeight="900" fill="#fff">T</text>
+      </svg>
+    ),
     TypeScript: (
-      <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
         <rect width="24" height="24" rx="3" fill="#3178C6"/>
         <text x="3" y="19" fontFamily="Arial Black,sans-serif" fontSize="13" fontWeight="900" fill="#fff">TS</text>
       </svg>
     ),
     'C': (
-      <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="11" fill="#A8B9CC"/>
-        <text x="6.5" y="17" fontFamily="Arial Black,sans-serif" fontSize="14" fontWeight="900" fill="#fff">C</text>
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="11" fill="#00599C"/>
+        <text x="6" y="17.5" fontFamily="Arial Black,sans-serif" fontSize="15" fontWeight="900" fill="#fff">C</text>
       </svg>
     ),
-    HTML5: (
-      <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
-        <path d="M3 2l1.68 18.4L12 22l7.32-1.6L21 2H3z" fill="#E34F26"/>
-        <path d="M12 20.4l5.95-1.63L19.14 4H12v16.4z" fill="#EF652A"/>
-        <path d="M7.5 7.5h4.5v2H9.6l.2 2.4h2.2v2H8l-.5-6.4zM9.9 14.2h2l.2 2.1-2.1.6-.1-2.7z" fill="#fff"/>
-        <path d="M12 7.5h4.5l-.4 4.4H12v-2h2.6l.1-1h-2.7V7.5zM12 14.2h2.3l-.2 1.9L12 16.8v-2.6z" fill="#ebebeb"/>
-      </svg>
-    ),
-    CSS3: (
-      <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
-        <path d="M3 2l1.68 18.4L12 22l7.32-1.6L21 2H3z" fill="#1572B6"/>
-        <path d="M12 20.4l5.95-1.63L19.14 4H12v16.4z" fill="#33A9DC"/>
-        <path d="M12 12.5H8.3l-.3-2.5H12v-2H5.9l.5 6.5H12v-2zM12 17l-.05.01-2.6-.7-.16-1.86H7l.3 3.47L12 19.4l.01-.01V17z" fill="#fff"/>
-        <path d="M12 10v2h3.4l-.3 3.5-3.1.84V18.4l3.5-.96 2.5-7H12z" fill="#ebebeb"/>
-      </svg>
-    ),
-    'Go (Golang)': (
-      <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
-        <rect width="24" height="24" rx="3" fill="#00ACD7"/>
+    'Go': (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
+        <rect width="24" height="24" rx="4" fill="#00ADD8"/>
         <text x="2" y="18" fontFamily="Arial Black,sans-serif" fontSize="13" fontWeight="900" fill="#fff">Go</text>
       </svg>
     ),
-    'Android Development': (
-      <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
-        <path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v6c0 .83.67 1.5 1.5 1.5S5 16.33 5 15.5v-6C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v6c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-6c0-.83-.67-1.5-1.5-1.5zm-4.97-4.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C13.85 2.23 12.95 2 12 2c-.96 0-1.86.23-2.66.63L7.85 1.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31C6.73 4.29 5.5 6.01 5.5 8h13c0-1.99-1.23-3.71-2.97-4.84zM9 6c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm6 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z" fill="#3DDC84"/>
+    'Go (Golang)': (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
+        <rect width="24" height="24" rx="4" fill="#00ADD8"/>
+        <text x="2" y="18" fontFamily="Arial Black,sans-serif" fontSize="13" fontWeight="900" fill="#fff">Go</text>
+      </svg>
+    ),
+    'Bash & Shell': (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
+        <rect width="24" height="24" rx="4" fill="#293138"/>
+        <text x="2" y="17" fontFamily="monospace" fontSize="11" fontWeight="bold" fill="#4EAA25">$_</text>
+      </svg>
+    ),
+    'Bash': (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
+        <rect width="24" height="24" rx="4" fill="#293138"/>
+        <text x="2" y="17" fontFamily="monospace" fontSize="11" fontWeight="bold" fill="#4EAA25">$_</text>
+      </svg>
+    ),
+    HTML5: (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 2l1.68 18.4L12 22l7.32-1.6L21 2H3z" fill="#E34F26"/>
+        <path d="M12 20.4l5.95-1.63L19.14 4H12v16.4z" fill="#EF652A"/>
+      </svg>
+    ),
+    'HTML5 & Modern CSS3': (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 2l1.68 18.4L12 22l7.32-1.6L21 2H3z" fill="#E34F26"/>
+        <path d="M12 20.4l5.95-1.63L19.14 4H12v16.4z" fill="#264de4"/>
+      </svg>
+    ),
+    CSS3: (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 2l1.68 18.4L12 22l7.32-1.6L21 2H3z" fill="#1572B6"/>
+        <path d="M12 20.4l5.95-1.63L19.14 4H12v16.4z" fill="#33A9DC"/>
       </svg>
     ),
     Django: (
-      <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
-        <rect width="24" height="24" rx="3" fill="#092E20"/>
-        <text x="1" y="18" fontFamily="Arial Black,sans-serif" fontSize="11" fontWeight="900" fill="#44B78B">Dj</text>
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
+        <rect width="24" height="24" rx="4" fill="#092E20"/>
+        <text x="2" y="18" fontFamily="Arial Black,sans-serif" fontSize="12" fontWeight="900" fill="#44B78B">dj</text>
       </svg>
     ),
-    'Frontend Engineering': (
-      <svg viewBox="0 0 24 24" width={s} height={s} fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="2" y="4" width="20" height="14" rx="2" stroke="#38BDF8" strokeWidth="1.5"/>
-        <path d="M8 10l-3 2 3 2M16 10l3 2-3 2M13 8l-2 8" stroke="#38BDF8" strokeWidth="1.5" strokeLinecap="round"/>
+    React: (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="2.5" fill="#61DAFB"/>
+        <ellipse cx="12" cy="12" rx="10" ry="4" stroke="#61DAFB" strokeWidth="1.2" fill="none"/>
+        <ellipse cx="12" cy="12" rx="10" ry="4" stroke="#61DAFB" strokeWidth="1.2" fill="none" transform="rotate(60 12 12)"/>
+        <ellipse cx="12" cy="12" rx="10" ry="4" stroke="#61DAFB" strokeWidth="1.2" fill="none" transform="rotate(120 12 12)"/>
       </svg>
     ),
-    'REST APIs': (
-      <svg viewBox="0 0 24 24" width={s} height={s} fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="5" cy="12" r="2.5" stroke="#818CF8" strokeWidth="1.5"/>
-        <circle cx="19" cy="12" r="2.5" stroke="#818CF8" strokeWidth="1.5"/>
-        <circle cx="12" cy="12" r="2.5" stroke="#818CF8" strokeWidth="1.5"/>
-        <line x1="7.5" y1="12" x2="9.5" y2="12" stroke="#818CF8" strokeWidth="1.5"/>
-        <line x1="14.5" y1="12" x2="16.5" y2="12" stroke="#818CF8" strokeWidth="1.5"/>
+    'React & Tailwind CSS': (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="2.5" fill="#38BDF8"/>
+        <ellipse cx="12" cy="12" rx="10" ry="4" stroke="#38BDF8" strokeWidth="1.2" fill="none"/>
+        <ellipse cx="12" cy="12" rx="10" ry="4" stroke="#38BDF8" strokeWidth="1.2" fill="none" transform="rotate(60 12 12)"/>
       </svg>
     ),
-    'WebSockets & WebRTC': (
-      <svg viewBox="0 0 24 24" width={s} height={s} fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2C8 2 5 5 5 9c0 2.5 1.2 4.8 3 6.2V20h8v-4.8c1.8-1.4 3-3.7 3-6.2 0-4-3-7-7-7z" stroke="#34D399" strokeWidth="1.5"/>
-        <path d="M9 10l1.5 1.5L12 10l1.5 1.5L15 10" stroke="#34D399" strokeWidth="1.5" strokeLinecap="round"/>
+    'WebRTC & WebSockets': (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="6" cy="12" r="3" stroke="#10B981" strokeWidth="2"/>
+        <circle cx="18" cy="12" r="3" stroke="#38BDF8" strokeWidth="2"/>
+        <path d="M9 10c1.5-1.5 4.5-1.5 6 0M9 14c1.5 1.5 4.5 1.5 6 0" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/>
+      </svg>
+    ),
+    WebRTC: (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="6" cy="12" r="3" stroke="#10B981" strokeWidth="2"/>
+        <circle cx="18" cy="12" r="3" stroke="#38BDF8" strokeWidth="2"/>
+        <path d="M9 10c1.5-1.5 4.5-1.5 6 0M9 14c1.5 1.5 4.5 1.5 6 0" stroke="#fff" strokeWidth="1.5" strokeLinecap="round"/>
+      </svg>
+    ),
+    WebSockets: (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 3v18M7 8l5-5 5 5M17 16l-5 5-5-5" stroke="#F59E0B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
     PostgreSQL: (
-      <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
         <rect width="24" height="24" rx="4" fill="#336791"/>
         <path d="M17.5 11c-.2-1.5-1-2.8-2.3-3.6-1.5-.9-3.4-1-5-.3C8.8 7.7 7.7 9 7.2 10.6c-.6 1.8-.4 3.7.5 5.3.8 1.3 2.1 2.2 3.6 2.5 1.5.3 3.1-.1 4.4-.9" stroke="#fff" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
         <path d="M12 10v4l2.5 1.5" stroke="#68B9E3" strokeWidth="1.4" strokeLinecap="round"/>
@@ -96,7 +133,7 @@ export const SkillIcon: React.FC<SkillIconProps> = ({ name, size = 18 }) => {
       </svg>
     ),
     MySQL: (
-      <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
         <path d="M12 2C8 2 5 3.3 5 5v14c0 1.7 3 3 7 3s7-1.3 7-3V5c0-1.7-3-3-7-3z" fill="#005C84"/>
         <ellipse cx="12" cy="5" rx="7" ry="2.5" fill="#00758F"/>
         <path d="M5 9c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5" stroke="#fff" strokeWidth="0.8" fill="none"/>
@@ -104,94 +141,104 @@ export const SkillIcon: React.FC<SkillIconProps> = ({ name, size = 18 }) => {
       </svg>
     ),
     SQLite: (
-      <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
         <path d="M12 2C8 2 5 3.3 5 5v14c0 1.7 3 3 7 3s7-1.3 7-3V5c0-1.7-3-3-7-3z" fill="#003B57"/>
         <ellipse cx="12" cy="5" rx="7" ry="2.5" fill="#0F80CC"/>
         <path d="M5 9c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5" stroke="#53B0D8" strokeWidth="0.8" fill="none"/>
       </svg>
     ),
-    'Linux (15+ Distros Explored)': (
-      <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="11" fill="#1A1A2E"/>
-        <ellipse cx="12" cy="9" rx="3.5" ry="4" fill="#FFD700"/>
-        <circle cx="10.5" cy="8" r="0.7" fill="#1A1A2E"/>
-        <circle cx="13.5" cy="8" r="0.7" fill="#1A1A2E"/>
-        <path d="M10 11c0 0 2 1.5 4 0" stroke="#1A1A2E" strokeWidth="0.8" fill="none" strokeLinecap="round"/>
-        <path d="M9 13c-1.5 1-2 3-1.5 4.5M15 13c1.5 1 2 3 1.5 4.5M10.5 13.5v4.5M13.5 13.5v4.5M9 18h6" stroke="#FFD700" strokeWidth="1" fill="none" strokeLinecap="round"/>
-      </svg>
-    ),
-    'Linux (Arch & Debian)': (
-      <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="11" fill="#1A1A2E"/>
-        <ellipse cx="12" cy="9" rx="3.5" ry="4" fill="#FFD700"/>
-        <circle cx="10.5" cy="8" r="0.7" fill="#1A1A2E"/>
-        <circle cx="13.5" cy="8" r="0.7" fill="#1A1A2E"/>
-        <path d="M10 11c0 0 2 1.5 4 0" stroke="#1A1A2E" strokeWidth="0.8" fill="none" strokeLinecap="round"/>
-        <path d="M9 13c-1.5 1-2 3-1.5 4.5M15 13c1.5 1 2 3 1.5 4.5M10.5 13.5v4.5M13.5 13.5v4.5M9 18h6" stroke="#FFD700" strokeWidth="1" fill="none" strokeLinecap="round"/>
-      </svg>
-    ),
-    Docker: (
-      <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
-        <path d="M22.5 11.5a4 4 0 00-2.5-.5c-.3-2-1.8-3-3-3.5l-.5-.3-.3.5c-.3.6-.4 1.5-.4 2.1.1.5.3 1 .6 1.4a4.8 4.8 0 01-2.1.5H2.5A5 5 0 002 15c.3 2.6 2 4.5 4.5 5.5 2 .8 4.2.8 6.2 0 2-.9 3.5-2.4 4.3-4.5H17c1 0 2.3-.5 2.8-1.5.3-.5.5-1.2.7-2l.2-.8-.2-.2z" fill="#2496ED"/>
-        <path d="M4 11.5h2V14H4zM7 11.5h2V14H7zM10 11.5h2V14h-2zM13 11.5h2V14h-2zM10 8.5h2v2.5h-2zM13 8.5h2v2.5h-2z" fill="#fff"/>
-      </svg>
-    ),
-    Coolify: (
-      <svg viewBox="0 0 24 24" width={s} height={s} fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="10" stroke="#6366F1" strokeWidth="1.5"/>
-        <path d="M8 12a4 4 0 004 4 4 4 0 004-4 4 4 0 00-4-4" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
-        <circle cx="12" cy="12" r="1.5" fill="#6366F1"/>
-      </svg>
-    ),
-    'Home Server & Networking': (
-      <svg viewBox="0 0 24 24" width={s} height={s} fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="2" y="6" width="20" height="6" rx="1.5" stroke="#34D399" strokeWidth="1.5"/>
-        <rect x="2" y="14" width="20" height="6" rx="1.5" stroke="#34D399" strokeWidth="1.5"/>
-        <circle cx="18" cy="9" r="1" fill="#34D399"/>
-        <circle cx="18" cy="17" r="1" fill="#34D399"/>
-        <line x1="6" y1="9" x2="14" y2="9" stroke="#34D399" strokeWidth="1" strokeLinecap="round"/>
-        <line x1="6" y1="17" x2="14" y2="17" stroke="#34D399" strokeWidth="1" strokeLinecap="round"/>
-      </svg>
-    ),
-    'Git & Version Control': (
-      <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
-        <path d="M22.65 11.4L12.6 1.35a1.2 1.2 0 00-1.7 0L8.8 3.45l2.15 2.15a1.42 1.42 0 011.8 1.82l2.07 2.07a1.42 1.42 0 11-.85.85L12 8.37v5.6a1.42 1.42 0 11-1.17-.04v-5.65a1.42 1.42 0 01-.77-1.86L7.93 4.3l-6.58 6.59a1.2 1.2 0 000 1.7l10.05 10.06a1.2 1.2 0 001.7 0l9.55-9.55a1.2 1.2 0 000-1.7z" fill="#F05032"/>
-      </svg>
-    ),
-    Bash: (
-      <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
-        <rect width="24" height="24" rx="3" fill="#1D1D1D"/>
-        <text x="2" y="18" fontFamily="monospace" fontSize="10" fontWeight="bold" fill="#4EC94E">$_</text>
+    'Debian Linux': (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="11" fill="#A80030"/>
+        <path d="M12 5.5c-3.6 0-6.5 2.9-6.5 6.5 0 2.4 1.3 4.5 3.3 5.6.3-.5.7-.9 1.2-1.2-1.3-.8-2.2-2.3-2.2-3.9 0-2.6 2.1-4.7 4.7-4.7 2.4 0 4.4 1.8 4.7 4.1.6.2 1.1.4 1.6.7C18.2 8.9 15.3 5.5 12 5.5z" fill="#fff"/>
       </svg>
     ),
     'Arch Linux': (
-      <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
         <path d="M12 2L4 20h4l1.5-4h5L16 20h4L12 2z" fill="#1793D1"/>
         <path d="M12 7l2.5 7h-5L12 7z" fill="#fff" opacity="0.8"/>
       </svg>
     ),
-    'React': (
-      <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="2.5" fill="#61DAFB"/>
-        <ellipse cx="12" cy="12" rx="10" ry="4" stroke="#61DAFB" strokeWidth="1.2" fill="none"/>
-        <ellipse cx="12" cy="12" rx="10" ry="4" stroke="#61DAFB" strokeWidth="1.2" fill="none" transform="rotate(60 12 12)"/>
-        <ellipse cx="12" cy="12" rx="10" ry="4" stroke="#61DAFB" strokeWidth="1.2" fill="none" transform="rotate(120 12 12)"/>
+    '15+ Linux Distributions': (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="11" fill="#2D3748"/>
+        <ellipse cx="12" cy="9.5" rx="3.5" ry="4" fill="#FFD700"/>
+        <circle cx="10.5" cy="8.5" r="0.7" fill="#1A202C"/>
+        <circle cx="13.5" cy="8.5" r="0.7" fill="#1A202C"/>
+        <path d="M10 11.5c.8.8 3.2.8 4 0" stroke="#1A202C" strokeWidth="0.8" fill="none"/>
+        <path d="M9 13.5c-1.5 1-2 3-1.5 4.5M15 13.5c1.5 1 2 3 1.5 4.5" stroke="#FFD700" strokeWidth="1.2" fill="none"/>
+      </svg>
+    ),
+    'Docker & Compose': (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
+        <path d="M22.5 11.5a4 4 0 00-2.5-.5c-.3-2-1.8-3-3-3.5l-.5-.3-.3.5c-.3.6-.4 1.5-.4 2.1.1.5.3 1 .6 1.4a4.8 4.8 0 01-2.1.5H2.5A5 5 0 002 15c.3 2.6 2 4.5 4.5 5.5 2 .8 4.2.8 6.2 0 2-.9 3.5-2.4 4.3-4.5H17c1 0 2.3-.5 2.8-1.5.3-.5.5-1.2.7-2l.2-.8-.2-.2z" fill="#2496ED"/>
+        <path d="M4 11.5h2V14H4zM7 11.5h2V14H7zM10 11.5h2V14h-2zM13 11.5h2V14h-2zM10 8.5h2v2.5h-2zM13 8.5h2v2.5h-2z" fill="#fff"/>
+      </svg>
+    ),
+    Docker: (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
+        <path d="M22.5 11.5a4 4 0 00-2.5-.5c-.3-2-1.8-3-3-3.5l-.5-.3-.3.5c-.3.6-.4 1.5-.4 2.1.1.5.3 1 .6 1.4a4.8 4.8 0 01-2.1.5H2.5A5 5 0 002 15c.3 2.6 2 4.5 4.5 5.5 2 .8 4.2.8 6.2 0 2-.9 3.5-2.4 4.3-4.5H17c1 0 2.3-.5 2.8-1.5.3-.5.5-1.2.7-2l.2-.8-.2-.2z" fill="#2496ED"/>
+        <path d="M4 11.5h2V14H4zM7 11.5h2V14H7zM10 11.5h2V14h-2zM13 11.5h2V14h-2zM10 8.5h2v2.5h-2zM13 8.5h2v2.5h-2z" fill="#fff"/>
+      </svg>
+    ),
+    'Coolify PaaS': (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" stroke="#6366F1" strokeWidth="1.8"/>
+        <path d="M8 12a4 4 0 004 4 4 4 0 004-4 4 4 0 00-4-4" stroke="#6366F1" strokeWidth="1.8" strokeLinecap="round"/>
+        <circle cx="12" cy="12" r="1.8" fill="#6366F1"/>
+      </svg>
+    ),
+    Coolify: (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" stroke="#6366F1" strokeWidth="1.8"/>
+        <path d="M8 12a4 4 0 004 4 4 4 0 004-4 4 4 0 00-4-4" stroke="#6366F1" strokeWidth="1.8" strokeLinecap="round"/>
+        <circle cx="12" cy="12" r="1.8" fill="#6366F1"/>
+      </svg>
+    ),
+    'Traefik & Reverse Proxies': (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="3" y="4" width="18" height="16" rx="3" stroke="#24A1C1" strokeWidth="1.8"/>
+        <path d="M7 8h10M7 12h7M7 16h4" stroke="#24A1C1" strokeWidth="1.8" strokeLinecap="round"/>
+      </svg>
+    ),
+    'Git & GitHub': (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
+        <path d="M22.65 11.4L12.6 1.35a1.2 1.2 0 00-1.7 0L8.8 3.45l2.15 2.15a1.42 1.42 0 011.8 1.82l2.07 2.07a1.42 1.42 0 11-.85.85L12 8.37v5.6a1.42 1.42 0 11-1.17-.04v-5.65a1.42 1.42 0 01-.77-1.86L7.93 4.3l-6.58 6.59a1.2 1.2 0 000 1.7l10.05 10.06a1.2 1.2 0 001.7 0l9.55-9.55a1.2 1.2 0 000-1.7z" fill="#F05032"/>
+      </svg>
+    ),
+    'Local LLMs & Ollama': (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="3" y="3" width="18" height="18" rx="4" stroke="#EC4899" strokeWidth="1.8"/>
+        <circle cx="8.5" cy="9.5" r="1.5" fill="#EC4899"/>
+        <circle cx="15.5" cy="9.5" r="1.5" fill="#EC4899"/>
+        <path d="M8 15s1.5 2 4 2 4-2 4-2" stroke="#EC4899" strokeWidth="1.8" strokeLinecap="round"/>
+      </svg>
+    ),
+    'Speech & Audio Processing': (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="2" width="8" height="12" rx="4" stroke="#8B5CF6" strokeWidth="1.8"/>
+        <path d="M4 10v2a8 8 0 0016 0v-2M12 20v2M8 22h8" stroke="#8B5CF6" strokeWidth="1.8" strokeLinecap="round"/>
+      </svg>
+    ),
+    Debian: (
+      <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="11" fill="#A80030"/>
+        <path d="M12 5.5c-3.6 0-6.5 2.9-6.5 6.5 0 2.4 1.3 4.5 3.3 5.6.3-.5.7-.9 1.2-1.2-1.3-.8-2.2-2.3-2.2-3.9 0-2.6 2.1-4.7 4.7-4.7 2.4 0 4.4 1.8 4.7 4.1.6.2 1.1.4 1.6.7C18.2 8.9 15.3 5.5 12 5.5z" fill="#fff"/>
       </svg>
     ),
   };
 
   return icons[name] || (
-    // Fallback: colored initials badge
-    <svg viewBox="0 0 24 24" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
-      <rect width="24" height="24" rx="4" fill="rgba(99,102,241,0.3)"/>
+    <svg viewBox="0 0 24 24" width={s} height={s} className={className} xmlns="http://www.w3.org/2000/svg">
+      <rect width="24" height="24" rx="4" fill="rgba(56, 189, 248, 0.15)"/>
       <text
         x="12"
-        y="17"
+        y="16.5"
         textAnchor="middle"
         fontFamily="monospace"
         fontSize="10"
         fontWeight="bold"
-        fill="#a5b4fc"
+        fill="#38BDF8"
       >
         {name.slice(0, 2).toUpperCase()}
       </text>

@@ -7,7 +7,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 
-# Copy source code and build
+# Copy source code and build for /me/
 COPY . .
 ENV VITE_BASE_PATH=/me/
 RUN npm run build
@@ -18,16 +18,14 @@ FROM nginx:alpine
 # Remove default nginx static assets
 RUN rm -rf /usr/share/nginx/html/*
 
-# Copy built assets to root
+# Copy built assets to both root and /me directly from builder stage
 COPY --from=builder /app/dist /usr/share/nginx/html
-
-# Also copy assets directly into /me directory so both /me/... and /... physical paths resolve immediately
-RUN mkdir -p /usr/share/nginx/html/me && cp -r /usr/share/nginx/html/* /usr/share/nginx/html/me/
+COPY --from=builder /app/dist /usr/share/nginx/html/me
 
 # Copy custom nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Expose both 80 and 3000 to prevent port mismatch in Coolify
+# Expose ports 80 and 3000
 EXPOSE 80 3000
 
 CMD ["nginx", "-g", "daemon off;"]

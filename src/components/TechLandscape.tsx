@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Layers, Terminal, Database, Server, Cpu, Sparkles, Code2, Globe, Check, ExternalLink } from 'lucide-react';
+import { Layers, Terminal, Database, Server, Cpu, Code2, Globe, CheckCircle2, ArrowRight, Sparkles } from 'lucide-react';
 import { techLandscapeItems } from '../data/portfolioData';
 import { SkillIcon } from './SkillIcon';
 import { TechItem } from '../types';
@@ -10,11 +10,11 @@ type CategoryFilter = 'all' | 'programming' | 'web' | 'databases' | 'os' | 'infr
 const CATEGORIES: { id: CategoryFilter; label: string; icon: any }[] = [
   { id: 'all', label: 'All Ecosystem', icon: Layers },
   { id: 'programming', label: 'Programming', icon: Code2 },
-  { id: 'web', label: 'Web Dev', icon: Globe },
+  { id: 'web', label: 'Web Technologies', icon: Globe },
   { id: 'databases', label: 'Databases', icon: Database },
   { id: 'os', label: 'Operating Systems', icon: Terminal },
   { id: 'infra', label: 'Infrastructure', icon: Server },
-  { id: 'ai', label: 'AI & Automation', icon: Cpu },
+  { id: 'ai', label: 'AI & Systems', icon: Cpu },
 ];
 
 const STATUS_STYLES: Record<string, { bg: string; text: string; border: string }> = {
@@ -27,7 +27,7 @@ const STATUS_STYLES: Record<string, { bg: string; text: string; border: string }
 
 export const TechLandscape: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>('all');
-  const [selectedTech, setSelectedTech] = useState<TechItem | null>(techLandscapeItems[0]);
+  const [selectedTech, setSelectedTech] = useState<TechItem>(techLandscapeItems[0]);
 
   const filteredItems = techLandscapeItems.filter((item) => {
     if (activeCategory === 'all') return true;
@@ -35,14 +35,14 @@ export const TechLandscape: React.FC = () => {
   });
 
   return (
-    <section id="landscape" className="py-24 lg:py-32 relative overflow-hidden">
+    <section id="landscape" className="py-28 lg:py-36 relative overflow-hidden">
       {/* Top divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div>
             <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-accent-cyan uppercase">
               <span>05</span>
@@ -52,23 +52,23 @@ export const TechLandscape: React.FC = () => {
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mt-2">
               Technology Landscape
             </h2>
-            <p className="text-slate-400 mt-2 max-w-xl text-sm sm:text-base leading-relaxed">
-              Interactive map of tools and environments I actively use. Classified by genuine operational status — zero arbitrary percentage ratings.
+            <p className="text-slate-300 mt-3 max-w-2xl text-base sm:text-lg leading-relaxed font-light">
+              Interactive map of tools, platforms, and environments I work with. Represented as tools of curiosity and experimentation — no fabricated proficiency percentages.
             </p>
           </div>
 
-          {/* Status Legend */}
-          <div className="flex flex-wrap items-center gap-2.5 text-[11px] font-mono text-slate-400">
+          {/* Operational Status Legend */}
+          <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
             {Object.entries(STATUS_STYLES).map(([status, style]) => (
-              <span key={status} className={`px-2.5 py-1 rounded-md border ${style.bg} ${style.text} ${style.border}`}>
+              <span key={status} className={`px-3 py-1 rounded-lg border ${style.bg} ${style.text} ${style.border}`}>
                 {status}
               </span>
             ))}
           </div>
         </div>
 
-        {/* Category Filter Pills */}
-        <div className="flex flex-wrap items-center gap-2 mb-10 pb-2 border-b border-white/5">
+        {/* Category Filter Navigation */}
+        <div className="flex flex-wrap items-center gap-2.5 mb-10 pb-3 border-b border-white/[0.08]">
           {CATEGORIES.map((cat) => {
             const Icon = cat.icon;
             const isActive = activeCategory === cat.id;
@@ -76,10 +76,10 @@ export const TechLandscape: React.FC = () => {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all ${
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-medium transition-all ${
                   isActive
-                    ? 'bg-accent-cyan text-slate-950 font-bold shadow-lg shadow-accent-cyan/20 scale-[1.02]'
-                    : 'bg-surface-200/80 text-slate-300 hover:text-white hover:bg-surface-200 border border-white/10'
+                    ? 'bg-accent-cyan text-slate-950 font-bold shadow-lg shadow-accent-cyan/25 scale-[1.02]'
+                    : 'bg-surface-200/90 text-slate-300 hover:text-white hover:bg-surface-100 border border-white/[0.08]'
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -89,123 +89,131 @@ export const TechLandscape: React.FC = () => {
           })}
         </div>
 
-        {/* Main Grid: Visual Tech Clusters (8 cols) + Tech Detail Inspector (4 cols) */}
+        {/* Main Grid: Interactive Visual Clusters (7 cols) + Detail Inspector (5 cols) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Visual Clusters Grid */}
-          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-3.5">
-            <AnimatePresence>
-              {filteredItems.map((item) => {
-                const statusStyle = STATUS_STYLES[item.status] || STATUS_STYLES['Daily Driver'];
-                const isSelected = selectedTech?.name === item.name;
+          {/* Dynamic Visual Cluster (Fluid Badges & Pills) */}
+          <div className="lg:col-span-7 p-6 sm:p-8 rounded-3xl border border-white/[0.08] bg-surface-200/60 backdrop-blur-xl">
+            <div className="text-xs font-mono uppercase text-slate-400 tracking-wider mb-5 flex items-center justify-between">
+              <span>Interactive Nodes ({filteredItems.length})</span>
+              <span className="text-accent-cyan font-medium">Click any tool to inspect</span>
+            </div>
 
-                return (
-                  <motion.div
-                    key={item.name}
-                    layout
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.2 }}
-                    onClick={() => setSelectedTech(item)}
-                    className={`p-4 rounded-2xl border transition-all duration-200 cursor-pointer flex flex-col justify-between group ${
-                      isSelected
-                        ? 'bg-surface-100 border-accent-cyan shadow-xl shadow-accent-cyan/10 scale-[1.02]'
-                        : 'bg-surface-200/60 hover:bg-surface-200 border-white/10 hover:border-white/20'
-                    }`}
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="w-10 h-10 rounded-xl bg-surface-300/80 border border-white/10 flex items-center justify-center p-2 group-hover:scale-110 transition-transform">
-                          <SkillIcon name={item.name} size={22} />
-                        </div>
-                        <span className={`text-[10px] font-mono px-2 py-0.5 rounded border ${statusStyle.bg} ${statusStyle.text} ${statusStyle.border}`}>
-                          {item.status}
-                        </span>
+            {/* Fluid Visual Cluster Layout */}
+            <motion.div layout className="flex flex-wrap gap-3">
+              <AnimatePresence>
+                {filteredItems.map((item) => {
+                  const statusStyle = STATUS_STYLES[item.status] || STATUS_STYLES['Daily Driver'];
+                  const isSelected = selectedTech?.name === item.name;
+
+                  return (
+                    <motion.button
+                      key={item.name}
+                      layout
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      transition={{ duration: 0.2 }}
+                      onClick={() => setSelectedTech(item)}
+                      className={`group flex items-center gap-3 px-4 py-3 rounded-2xl border transition-all duration-200 cursor-pointer text-left ${
+                        isSelected
+                          ? 'bg-surface-100 border-accent-cyan shadow-xl shadow-accent-cyan/15 scale-[1.03] ring-1 ring-accent-cyan/50'
+                          : 'bg-surface-300/80 hover:bg-surface-300 border-white/[0.08] hover:border-white/20'
+                      }`}
+                    >
+                      <div className="w-8 h-8 rounded-xl bg-surface-200 border border-white/10 flex items-center justify-center p-1.5 shrink-0 group-hover:scale-110 transition-transform">
+                        <SkillIcon name={item.name} size={18} />
                       </div>
 
-                      <h3 className="text-sm font-bold text-white group-hover:text-accent-cyan transition-colors mb-1 truncate">
-                        {item.name}
-                      </h3>
-                      <p className="text-slate-400 text-xs line-clamp-2 leading-relaxed font-light">
-                        {item.description}
-                      </p>
-                    </div>
+                      <div className="min-w-0">
+                        <div className="text-xs sm:text-sm font-bold text-white group-hover:text-accent-cyan transition-colors truncate">
+                          {item.name}
+                        </div>
+                        <div className="flex items-center gap-2 mt-0.5">
+                          <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded border ${statusStyle.bg} ${statusStyle.text} ${statusStyle.border}`}>
+                            {item.status}
+                          </span>
+                        </div>
+                      </div>
+                    </motion.button>
+                  );
+                })}
+              </AnimatePresence>
+            </motion.div>
 
-                    <div className="mt-3 pt-2 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-slate-500">
-                      <span>{item.projectsUsedIn.length} verified builds</span>
-                      <span className="text-accent-cyan group-hover:translate-x-0.5 transition-transform">Inspect →</span>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
+            <div className="mt-8 pt-4 border-t border-white/5 text-xs text-slate-400 leading-relaxed font-light">
+              Technologies represent tools I actively build with, test in home servers, or study academically. No percentage rankings or arbitrary mastery ratings.
+            </div>
           </div>
 
-          {/* Interactive Technology Detail Inspector */}
-          <div className="lg:col-span-4 sticky top-28">
-            {selectedTech ? (
+          {/* Technology Detail Inspector Drawer (5 cols) */}
+          <div className="lg:col-span-5 sticky top-28">
+            <AnimatePresence mode="wait">
               <motion.div
                 key={selectedTech.name}
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="p-6 sm:p-7 rounded-3xl border border-white/10 bg-surface-200/90 backdrop-blur-xl shadow-2xl space-y-5"
+                exit={{ opacity: 0, y: -14 }}
+                transition={{ duration: 0.25 }}
+                className="p-7 sm:p-8 rounded-3xl border border-white/[0.08] bg-surface-200/95 backdrop-blur-xl shadow-2xl space-y-6"
               >
-                <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-2xl bg-surface-300 border border-white/15 flex items-center justify-center p-2.5">
-                      <SkillIcon name={selectedTech.name} size={28} />
+                {/* Header with high-res icon */}
+                <div className="flex items-center justify-between border-b border-white/[0.08] pb-5">
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 rounded-2xl bg-surface-300 border border-white/15 flex items-center justify-center p-3 shadow-lg">
+                      <SkillIcon name={selectedTech.name} size={32} />
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-white tracking-tight">
+                      <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
                         {selectedTech.name}
                       </h3>
-                      <span className="text-[11px] font-mono uppercase text-slate-400">
-                        {selectedTech.category}
+                      <span className="text-xs font-mono uppercase text-accent-cyan font-semibold">
+                        Domain: {selectedTech.category}
                       </span>
                     </div>
                   </div>
                   
-                  <span className={`text-xs font-mono px-2.5 py-1 rounded-md border ${STATUS_STYLES[selectedTech.status]?.bg} ${STATUS_STYLES[selectedTech.status]?.text} ${STATUS_STYLES[selectedTech.status]?.border}`}>
+                  <span className={`text-xs font-mono px-3 py-1 rounded-lg border font-semibold ${STATUS_STYLES[selectedTech.status]?.bg} ${STATUS_STYLES[selectedTech.status]?.text} ${STATUS_STYLES[selectedTech.status]?.border}`}>
                     {selectedTech.status}
                   </span>
                 </div>
 
-                <div className="space-y-1.5">
-                  <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">
-                    Role in Ecosystem
+                {/* Practical Role */}
+                <div className="space-y-2">
+                  <div className="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold">
+                    Role in Personal Stack
                   </div>
-                  <p className="text-sm text-slate-200 leading-relaxed font-light">
+                  <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-light">
                     {selectedTech.description}
                   </p>
                 </div>
 
-                <div className="space-y-2 pt-2 border-t border-white/5">
-                  <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">
-                    Actual Projects &amp; Implementations
+                {/* Actual Projects Used In */}
+                <div className="space-y-3 pt-3 border-t border-white/5">
+                  <div className="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold">
+                    Verified Builds &amp; Repositories
                   </div>
-                  <div className="space-y-1.5">
+                  <div className="space-y-2">
                     {selectedTech.projectsUsedIn.map((proj) => (
                       <div
                         key={proj}
-                        className="flex items-center gap-2 p-2 rounded-lg bg-surface-300/80 border border-white/5 text-xs font-mono text-slate-200"
+                        className="flex items-center justify-between p-3 rounded-xl bg-surface-300/80 border border-white/5 text-xs font-mono text-slate-200"
                       >
-                        <span className="w-1.5 h-1.5 rounded-full bg-accent-cyan" />
-                        <span>{proj}</span>
+                        <div className="flex items-center gap-2.5">
+                          <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
+                          <span className="font-semibold text-white">{proj}</span>
+                        </div>
+                        <span className="text-slate-400 text-[11px]">Implemented</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="p-3 rounded-xl bg-surface-400/80 border border-white/5 text-[11px] font-mono text-slate-400 leading-normal">
-                  Every technology shown here is backed by actual code in my GitHub repositories or running on my personal Debian server.
+                <div className="p-4 rounded-xl bg-surface-400/80 border border-white/5 text-xs font-mono text-slate-400 leading-relaxed">
+                  Backed by concrete code in my GitHub repositories or active service deployments on my Debian home server.
                 </div>
               </motion.div>
-            ) : (
-              <div className="p-8 rounded-3xl border border-white/10 bg-surface-200/50 text-center text-slate-400 text-xs font-mono">
-                Click any technology node to inspect its project connections.
-              </div>
-            )}
+            </AnimatePresence>
           </div>
 
         </div>

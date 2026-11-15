@@ -56,7 +56,7 @@ export const Contact: React.FC = () => {
           <div className="lg:col-span-5 space-y-5">
             {/* Direct Email Card */}
             <div className="p-6 rounded-2xl border border-white/10 bg-surface-200/80 backdrop-blur-xl space-y-4">
-              <span className="text-[11px] font-mono uppercase text-slate-400 tracking-wider">
+              <span className="text-xs font-mono uppercase text-slate-400 tracking-wider">
                 Direct Communication
               </span>
               
@@ -85,7 +85,7 @@ export const Contact: React.FC = () => {
 
               {/* Social Link Badges */}
               <div className="space-y-2 pt-1">
-                <span className="text-[10px] font-mono uppercase text-slate-500 tracking-wider">
+                <span className="text-xs font-mono uppercase text-slate-400 tracking-wider">
                   Verified Profiles
                 </span>
                 <div className="grid grid-cols-2 gap-2">
@@ -120,7 +120,7 @@ export const Contact: React.FC = () => {
               <div className="text-white font-semibold">
                 {personalInfo.homelabHost}
               </div>
-              <div className="text-slate-500 text-[10px]">
+              <div className="text-slate-400 text-xs font-mono">
                 Debian 12 · Coolify PaaS · Dynamic DNS · Latency: ~24ms
               </div>
             </div>

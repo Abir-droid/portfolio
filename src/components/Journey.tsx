@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { GraduationCap, Server, Code, Users, MapPin, Calendar, CheckCircle2 } from 'lucide-react';
+import { GraduationCap, Server, Code, Users, MapPin, CheckCircle2 } from 'lucide-react';
 import { journeyMilestones, personalInfo } from '../data/portfolioData';
 
 export const Journey: React.FC = () => {
@@ -15,14 +15,14 @@ export const Journey: React.FC = () => {
   };
 
   return (
-    <section id="journey" className="py-24 lg:py-32 relative overflow-hidden bg-surface-500/60">
+    <section id="journey" className="py-28 lg:py-36 relative overflow-hidden bg-surface-500/60">
       {/* Top divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Section Header */}
-        <div className="mb-14">
+        <div className="mb-16">
           <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-accent-cyan uppercase">
             <span>06</span>
             <span>·</span>
@@ -31,7 +31,7 @@ export const Journey: React.FC = () => {
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mt-2">
             Academic &amp; Engineering Path
           </h2>
-          <p className="text-slate-300 mt-3 max-w-xl text-base leading-relaxed font-light">
+          <p className="text-slate-300 mt-3 max-w-2xl text-base sm:text-lg leading-relaxed font-light">
             {personalInfo.bioShort}
           </p>
         </div>
@@ -48,46 +48,46 @@ export const Journey: React.FC = () => {
               className="relative group"
             >
               {/* Timeline marker icon */}
-              <div className="absolute -left-[35px] sm:-left-[51px] top-1.5 w-10 h-10 rounded-2xl bg-surface-200 border border-white/15 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:border-accent-cyan/50 transition-all duration-300">
+              <div className="absolute -left-[37px] sm:-left-[53px] top-1.5 w-11 h-11 rounded-2xl bg-surface-200 border border-white/15 flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:border-accent-cyan/50 transition-all duration-300">
                 {getIcon(item.type)}
               </div>
 
               {/* Milestone Card */}
-              <div className="p-6 sm:p-7 rounded-2xl border border-white/10 bg-surface-200/60 hover:bg-surface-200/90 transition-all duration-300 backdrop-blur-sm">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
-                  <span className="text-xs font-mono px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 w-fit">
+              <div className="p-7 sm:p-8 rounded-3xl border border-white/[0.08] bg-surface-200/70 hover:bg-surface-200/95 transition-all duration-300 backdrop-blur-md">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-2.5">
+                  <span className="text-xs font-mono px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/25 w-fit font-semibold">
                     {item.period}
                   </span>
-                  <div className="flex items-center gap-1.5 text-xs text-slate-400 font-mono">
-                    <MapPin className="w-3.5 h-3.5 text-rose-400" />
+                  <div className="flex items-center gap-1.5 text-xs sm:text-sm text-slate-400 font-mono">
+                    <MapPin className="w-3.5 h-3.5 text-rose-400 shrink-0" />
                     <span>{item.location}</span>
                   </div>
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight mb-1">
+                <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-1.5">
                   {item.role}
                 </h3>
                 
-                <div className="text-xs sm:text-sm font-mono text-accent-cyan mb-3">
+                <div className="text-sm sm:text-base font-mono text-accent-cyan mb-4 font-medium">
                   {item.institution}
                 </div>
 
-                <p className="text-slate-300 text-sm leading-relaxed mb-4 font-light">
+                <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-5 font-light">
                   {item.description}
                 </p>
 
                 {/* Key Learnings Tags */}
-                <div className="pt-3 border-t border-white/5">
-                  <div className="text-[10px] font-mono uppercase text-slate-400 tracking-wider mb-2">
+                <div className="pt-4 border-t border-white/5">
+                  <div className="text-xs font-mono uppercase text-slate-400 tracking-wider mb-2.5 font-semibold">
                     Key Focus Areas
                   </div>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2.5">
                     {item.keyLearnings.map((learning, idx) => (
                       <span
                         key={idx}
-                        className="flex items-center gap-1.5 text-xs font-mono px-3 py-1 rounded-lg bg-surface-400/80 border border-white/5 text-slate-200"
+                        className="flex items-center gap-2 text-xs sm:text-sm font-mono px-3.5 py-1.5 rounded-xl bg-surface-400/80 border border-white/5 text-slate-200"
                       >
-                        <CheckCircle2 className="w-3 h-3 text-cyan-400" />
+                        <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
                         <span>{learning}</span>
                       </span>
                     ))}
